@@ -137,6 +137,7 @@ const MyProjectsNavbar = () => {
     { name: "Home", href: "/" },
     { name: "About", href: "/#about" },
     { name: "Skills", href: "/#skills" },
+    { name: "Experience", href: "/my-experiences" },
     { name: "Contact", href: "/#contact" },
   ];
   const handleScroll = () => {
@@ -159,6 +160,8 @@ const MyProjectsNavbar = () => {
           element.scrollIntoView({ behavior: 'smooth' });
         }
       }, 100);
+    } else if (href === "/my-experiences") {
+      navigate("/my-experiences");
     }
   };
   const renderNavItem = (item, key) => (

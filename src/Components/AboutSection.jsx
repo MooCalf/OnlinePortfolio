@@ -1,5 +1,6 @@
 import { Briefcase, Code, User, Orbit, Brush } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const DivisionCard = ({ icon: Icon, title, description, index }) => (
   <motion.div
@@ -133,9 +134,9 @@ export const ExperienceSection = () => {
               I have 5+ years of experience working in and with multiple different projects and programs, all driven by a genuine love for creative and collaborative communities. My journey has allowed me to develop a strong sense of adaptability, and a proactive approach to problem solving. I thrive in team environments, communicate clearly, and am always eager to learn and support others. My dedication, reliability, and positive attitude make me a pleasure to work with and a valuable asset to any team or project.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-              <a href="#contact" className="cosmic-button">
-                Get In Touch!
-              </a>
+              <Link to="/my-experiences" className="cosmic-button">
+                View My Experiences
+              </Link>
               <a href="" className="outline-gradient-button">
                 CV Not Available Yet
               </a>

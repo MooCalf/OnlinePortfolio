@@ -55,11 +55,32 @@ export const Navbar = () => {
     }, [closeMenu]);
 
     return (
-        <nav className={cn(
-            "fixed w-full z-40 transition-all duration-300",
-            isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
-        )}>
-            <div className="container flex items-center justify-between">
+        <nav
+            className={cn(
+                "fixed top-0 left-0 right-0 z-40 transition-all duration-300 flex justify-center pointer-events-none",
+                isScrolled ? "py-3 shadow-xs" : "py-5"
+            )}
+        >
+            <div
+                className="max-w-screen-lg w-full mx-auto rounded-full bg-clip-padding flex items-center justify-between px-6 py-2 pointer-events-auto relative"
+                style={{
+                    background: `
+                        linear-gradient(90deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.08) 100%),
+                        linear-gradient(90deg, rgba(82,8,201,0.2) 0%, rgba(68,0,179,0.2) 58%, rgba(73,2,189,0.2) 100%)
+                    `,
+                    backdropFilter: "blur(3px)",
+                    WebkitBackdropFilter: "blur(3px)",
+                    boxShadow: "0 4px 32px 0 rgba(31, 38, 135, 0.10)"
+                }}
+            >
+                <span className="absolute inset-0 rounded-full pointer-events-none border" style={{
+                    border: '1px solid transparent',
+                    background: 'linear-gradient(90deg, #6C2BD7, #8C5CF6)',
+                    WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                    WebkitMaskComposite: 'xor',
+                    maskComposite: 'exclude',
+                    zIndex: 1
+                }} />
                 <a 
                     className="text-xl font-bold text-primary flex items-center" 
                     href="#hero"
@@ -69,6 +90,7 @@ export const Navbar = () => {
                             src="/projects/MooCalf_Main Logo.png" 
                             alt="MooCalf Logo" 
                             className="h-8 w-8 rounded-full"
+                            loading="lazy"
                         />
                         <span className="text-glow text-foreground">MooCalf</span>{" "}
                         Portfolio

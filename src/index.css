@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
 
 @theme {
   --color-border: hsl(var(--border));
@@ -135,25 +136,190 @@
 }
 
 @utility cosmic-button {
-  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)] hover:scale-105 active:scale-95;
+  @apply px-6 py-2 rounded-full font-medium transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)] hover:scale-105 active:scale-95 relative overflow-hidden;
+  background: linear-gradient(90deg, rgba(108,43,215,0.6) 0%, rgba(140,92,246,0.6) 100%);
+  color: var(--color-primary-foreground, #fff);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  box-shadow: 0 4px 32px 0 rgba(31, 38, 135, 0.10);
+  border: none;
 }
 
-@utility star {
-  @apply absolute rounded-full bg-white;
-  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
+.cosmic-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+  border: 1px solid transparent;
+  background: linear-gradient(90deg, #6C2BD7, #8C5CF6);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: 1;
 }
 
-@utility meteor {
-  @apply absolute bg-linear-to-r from-white via-white to-transparent rounded-full;
-  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
+@utility outline-gradient-button {
+  @apply px-6 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105 active:scale-95 relative overflow-hidden border-none bg-transparent;
+  color: var(--color-primary, #6C2BD7);
+  background: none;
 }
 
-html:not(.dark) .cosmic-button,
-html:not(.dark) button {
-  border: 2px solid #C9A0DC;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(8px) saturate(180%);
-  -webkit-backdrop-filter: blur(8px) saturate(180%);
-  color: #000;
+.outline-gradient-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+  border: 1px solid transparent;
+  background: linear-gradient(90deg, #6C2BD7, #8C5CF6);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: 1;
 }
+
+.outline-gradient-button:hover {
+  background: linear-gradient(90deg, rgba(108,43,215,0.6) 0%, rgba(140,92,246,0.6) 100%);
+  color: var(--color-primary-foreground, #fff);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.scrollbar-hide {
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; 
+}
+
+.modal-overlay-border {
+  position: relative;
+}
+.modal-overlay-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  pointer-events: none;
+  border: 1px solid transparent;
+  background: linear-gradient(90deg, #6C2BD7, #8C5CF6);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: 2;
+}
+
+.glass-navbar-skillbar {
+  border-radius: 9999px;
+  padding: 0.25rem 1.5rem;
+  background: linear-gradient(90deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.08) 100%),
+    linear-gradient(90deg, rgba(82,8,201,0.2) 0%, rgba(68,0,179,0.2) 58%, rgba(73,2,189,0.2) 100%);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  box-shadow: 0 4px 32px 0 rgba(31, 38, 135, 0.10);
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.glass-navbar-skillbar-border {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+  border: 1px solid transparent;
+  background: linear-gradient(90deg, #6C2BD7, #8C5CF6);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: 1;
+  display: block;
+}
+.glass-navbar-skillbar > *:not(.glass-navbar-skillbar-border) {
+  position: relative;
+  z-index: 2;
+}
+
+.glass-contact-form {
+  position: relative;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 32px 0 rgba(31, 38, 135, 0.10);
+  backdrop-filter: blur(0.5rem);
+  -webkit-backdrop-filter: blur(0.5rem);
+  z-index: 1;
+  background: none;
+}
+.glass-contact-form::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  pointer-events: none;
+  border: 1px solid  #6C2BD7;
+  background: linear-gradient(90deg, #6C2BD7, #8C5CF6);
+  background-image: linear-gradient(90deg, #6C2BD7, #8C5CF6), linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: 2;
+}
+.glass-contact-form > * {
+  position: relative;
+  z-index: 3;
+}
+
+.glass-send-message {
+  position: relative;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 32px 0 rgba(31, 38, 135, 0.10);
+  backdrop-filter: blur(0.5rem);
+  -webkit-backdrop-filter: blur(0.5rem);
+  z-index: 1;
+  background: none;
+}
+.glass-send-message::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  pointer-events: none;
+  border: 1px solid #6C2BD7;
+  background: #6d2bd725;
+  opacity: .3;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  z-index: 2;
+}
+.glass-send-message > * {
+  position: relative;
+  z-index: 3;
+}
+
+/* Add this at the end of the file for a grid background utility */
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: transparent;
+  background-image:
+    linear-gradient(to right, rgba(120,120,120,0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(120,120,120,0.07) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+@media (max-width: 640px) {
+  .grid-bg {
+    background-size: 20px 20px;
+  }
+}
+
+
+
 

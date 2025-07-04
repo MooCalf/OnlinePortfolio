@@ -38,7 +38,7 @@ const SocialLink = ({ icon: Icon, href, label }) => (
     target="_blank" 
     rel="noopener noreferrer"
     aria-label={label} 
-    className="p-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
+    className="outline-gradient-button"
   >
     <Icon size={20} />
   </a>
@@ -130,7 +130,7 @@ export const ContactSection = () => {
           </div>
           
           {/* Right: Contact Form */}
-          <div className="bg-card p-8 rounded-lg shadow-xs">
+          <div className="glass-send-message">
             <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div>

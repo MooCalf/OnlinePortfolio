@@ -1,14 +1,11 @@
-import { Navbar } from "@/Components/Navbar";
 import { ThemeToggle } from "@/Components/ThemeToggle";
 import { Background } from "@/Components/Background";
 import { Footer } from "@/Components/Footer";
-import { ArrowLeft, ExternalLink, Globe, X } from "lucide-react";
+import { ArrowLeft, ExternalLink, Globe, X, Menu } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useEffect, useState, useCallback, useMemo } from "react";
-import { Menu } from "lucide-react";
 
-// Sample projects data with Pinterest-like content
 const projects = [
   {
     id: 1,
@@ -132,36 +129,29 @@ const projects = [
   }
 ];
 
-// Custom Navbar for MyProjects page
 const MyProjectsNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-
   const navItems = useMemo(() => [
     { name: "Home", href: "/" },
     { name: "About", href: "/#about" },
     { name: "Skills", href: "/#skills" },
     { name: "Contact", href: "/#contact" },
   ], []);
-
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 10);
   }, []);
-
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
-
   const handleNavClick = useCallback((href) => {
     setIsMenuOpen(false);
     if (href === "/") {
       navigate("/");
     } else if (href.startsWith('/#')) {
-      // Navigate to home page first, then scroll to section
       navigate("/");
-      // Use setTimeout to ensure navigation completes before scrolling
       setTimeout(() => {
         const sectionId = href.split('#')[1];
         const element = document.getElementById(sectionId);
@@ -171,7 +161,6 @@ const MyProjectsNavbar = () => {
       }, 100);
     }
   }, [navigate]);
-
   const renderNavItem = useCallback((item, key) => (
     <button 
       key={key} 
@@ -181,13 +170,33 @@ const MyProjectsNavbar = () => {
       {item.name}
     </button>
   ), [handleNavClick]);
-
   return (
-    <nav className={cn(
-      "fixed w-full z-40 transition-all duration-300",
-      isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
-    )}>
-      <div className="container flex items-center justify-between">
+    <nav
+      className={cn(
+        "fixed top-0 left-0 right-0 z-40 transition-all duration-300 flex justify-center pointer-events-none",
+        isScrolled ? "py-3 shadow-xs" : "py-5"
+      )}
+    >
+      <div
+        className="max-w-screen-lg w-full mx-auto rounded-full bg-clip-padding flex items-center justify-between px-6 py-2 pointer-events-auto relative"
+        style={{
+          background: `
+            linear-gradient(90deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.08) 100%),
+            linear-gradient(90deg, rgba(82,8,201,0.2) 0%, rgba(68,0,179,0.2) 58%, rgba(73,2,189,0.2) 100%)
+          `,
+          backdropFilter: "blur(3px)",
+          WebkitBackdropFilter: "blur(3px)",
+          boxShadow: "0 4px 32px 0 rgba(31, 38, 135, 0.10)"
+        }}
+      >
+        <span className="absolute inset-0 rounded-full pointer-events-none border" style={{
+          border: '1px solid transparent',
+          background: 'linear-gradient(90deg, #6C2BD7, #8C5CF6)',
+          WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+          WebkitMaskComposite: 'xor',
+          maskComposite: 'exclude',
+          zIndex: 1
+        }} />
         <a 
           className="text-xl font-bold text-primary flex items-center" 
           href="/"
@@ -202,13 +211,9 @@ const MyProjectsNavbar = () => {
             Portfolio
           </span>
         </a>
-
-        {/* Desktop Nav Bar */}
         <div className="hidden md:flex space-x-8">
           {navItems.map((item, key) => renderNavItem(item, key))}
         </div>
-
-        {/* Mobile nav */}
         <button
           onClick={() => setIsMenuOpen(prev => !prev)}
           className="md:hidden p-2 text-foreground z-50"
@@ -216,7 +221,6 @@ const MyProjectsNavbar = () => {
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
-        
         <div className={cn(
           "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
           "transition-all duration-300 md:hidden",
@@ -231,57 +235,43 @@ const MyProjectsNavbar = () => {
   );
 };
 
-// Pinterest-style Modal Component
 const ProjectModal = ({ project, isOpen, onClose, allProjects, onProjectChange }) => {
   const otherProjects = useMemo(() => 
     allProjects.filter(p => p.id !== project?.id).slice(0, 6),
     [allProjects, project?.id]
   );
-
   const handleOtherProjectClick = useCallback((otherProject) => {
     onProjectChange(otherProject);
   }, [onProjectChange]);
-
   if (!isOpen || !project) return null;
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      {/* Backdrop */}
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto scrollbar-hide">
       <div 
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
       />
-      
-      {/* Modal Content */}
-      <div className="relative bg-background rounded-2xl shadow-2xl max-w-7xl w-full max-h-[90vh] overflow-hidden">
-        {/* Close Button */}
+      <div className="relative bg-background rounded-2xl shadow-2xl max-w-7xl w-full max-h-[90vh] overflow-y-auto scrollbar-hide">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 z-10 p-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
         >
           <X size={20} />
         </button>
-
         <div className="flex flex-col lg:flex-row h-full">
-          {/* Left Side - Main Image and Details */}
           <div className="lg:w-2/3 p-6 lg:p-8">
-            {/* Main Image */}
             <div className="mb-6">
               <img 
                 src={project.image} 
                 alt={project.title} 
                 className="w-full h-auto max-h-[60vh] object-cover rounded-xl"
+                loading="lazy"
               />
             </div>
-            
-            {/* Project Details */}
             <div className="space-y-4">
               <h2 className="text-3xl font-bold">{project.title}</h2>
               <p className="text-muted-foreground text-lg leading-relaxed">
                 {project.description}
               </p>
-              
-              {/* Tags */}
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag, index) => (
                   <span
@@ -292,8 +282,6 @@ const ProjectModal = ({ project, isOpen, onClose, allProjects, onProjectChange }
                   </span>
                 ))}
               </div>
-              
-              {/* Action Buttons */}
               <div className="flex gap-4 pt-4">
                 <a 
                   href={project.demoUrl} 
@@ -306,7 +294,7 @@ const ProjectModal = ({ project, isOpen, onClose, allProjects, onProjectChange }
                 </a>
                 <a 
                   href={project.artstationUrl} 
-                  className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300 flex items-center gap-2"
+                  className="outline-gradient-button flex items-center gap-2"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -316,8 +304,6 @@ const ProjectModal = ({ project, isOpen, onClose, allProjects, onProjectChange }
               </div>
             </div>
           </div>
-
-          {/* Right Side - Other Projects Grid */}
           <div className="lg:w-1/3 p-6 lg:p-8 border-l border-border">
             <h3 className="text-xl font-semibold mb-4">More Projects</h3>
             <div className="grid grid-cols-2 gap-3">
@@ -332,6 +318,7 @@ const ProjectModal = ({ project, isOpen, onClose, allProjects, onProjectChange }
                       src={otherProject.image} 
                       alt={otherProject.title} 
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      loading="lazy"
                     />
                   </div>
                   <p className="text-sm font-medium mt-2 line-clamp-2 group-hover:text-primary transition-colors">
@@ -353,19 +340,18 @@ const ProjectCard = ({ project, onClick }) => (
       className="bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer"
       onClick={() => onClick(project)}
     >
-      {/* Image Container */}
       <div className={`${project.height} overflow-hidden relative`}>
         <img 
           src={project.image} 
           alt={project.title} 
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          loading="lazy"
         />
-        {/* Overlay with actions */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-end justify-end p-4 opacity-0 group-hover:opacity-100">
           <div className="flex gap-2">
             <a 
               href={project.demoUrl} 
-              className="p-2 rounded-full bg-white/90 hover:bg-white text-gray-800 transition-colors duration-300"
+              className="outline-gradient-button p-2"
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
@@ -374,7 +360,7 @@ const ProjectCard = ({ project, onClick }) => (
             </a>
             <a 
               href={project.artstationUrl} 
-              className="p-2 rounded-full bg-white/90 hover:bg-white text-gray-800 transition-colors duration-300"
+              className="outline-gradient-button p-2"
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
@@ -384,13 +370,9 @@ const ProjectCard = ({ project, onClick }) => (
           </div>
         </div>
       </div>
-      
-      {/* Content */}
       <div className="p-4">
         <h3 className="font-semibold text-lg mb-2 line-clamp-2">{project.title}</h3>
         <p className="text-muted-foreground text-sm mb-3 line-clamp-3">{project.description}</p>
-        
-        {/* Tags */}
         <div className="flex flex-wrap gap-1">
           {project.tags.map((tag, index) => (
             <span
@@ -409,44 +391,35 @@ const ProjectCard = ({ project, onClick }) => (
 export const MyProjects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const handleProjectClick = useCallback((project) => {
     setSelectedProject(project);
     setIsModalOpen(true);
   }, []);
-
   const closeModal = useCallback(() => {
     setIsModalOpen(false);
     setSelectedProject(null);
   }, []);
-
   const handleOtherProjectClick = useCallback((otherProject) => {
     setSelectedProject(otherProject);
     setIsModalOpen(true);
   }, []);
-
   const projectCards = useMemo(() => 
     projects.map((project) => (
       <ProjectCard key={project.id} project={project} onClick={handleProjectClick} />
     )), [handleProjectClick]
   );
-
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      {/* Navigation Bar */}
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
+      <div className="grid-bg" aria-hidden="true" />
       <MyProjectsNavbar />
-      {/* Theme Toggle */}
       <ThemeToggle />
-      {/* Background Effects (without meteors/stars) */}
       <Background showEffects={false} />
-      
-      {/* Header */}
       <div className="pt-24 pb-8 px-4">
         <div className="container mx-auto max-w-7xl">
           <div className="flex items-center gap-4 mb-8">
             <Link 
               to="/" 
-              className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors duration-300"
+              className="outline-gradient-button p-2"
             >
               <ArrowLeft size={20} />
             </Link>
@@ -459,8 +432,6 @@ export const MyProjects = () => {
           </p>
         </div>
       </div>
-
-      {/* Pinterest-style Masonry Grid */}
       <div className="px-4 pb-24">
         <div className="container mx-auto max-w-7xl">
           <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
@@ -468,11 +439,7 @@ export const MyProjects = () => {
           </div>
         </div>
       </div>
-
-      {/* Footer */}
       <Footer />
-
-      {/* Modal */}
       <ProjectModal
         project={selectedProject}
         isOpen={isModalOpen}

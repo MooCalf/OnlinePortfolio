@@ -1,5 +1,6 @@
 import { useState, useMemo, useCallback } from "react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 const skills = [
   // Hard Skills
@@ -33,8 +34,14 @@ const skills = [
 const categories = ["all", "hard", "soft"];
 const categoryLabels = { all: "All Skills", hard: "Hard Skills", soft: "Soft Skills" };
 
-const SkillCard = ({ skill }) => (
-  <div className="bg-card p-6 rounded-lg shadow-xs card-hover">
+const SkillCard = ({ skill, index }) => (
+  <motion.div
+    className="bg-card p-6 rounded-lg shadow-xs card-hover"
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.1 + index * 0.08, duration: 0.5, ease: "easeOut" }}
+    viewport={{ once: true }}
+  >
     <div className="text-left mb-2 flex items-center justify-between">
       <h3 className="font-semibold text-lg">{skill.name}</h3>
       <span className="text-sm text-muted-foreground">{skill.level}%</span>
@@ -48,7 +55,7 @@ const SkillCard = ({ skill }) => (
     {skill.description && (
       <div className="text-xs text-muted-foreground mt-1 italic">{skill.description}</div>
     )}
-  </div>
+  </motion.div>
 );
 
 export const SkillsSection = () => {
@@ -63,12 +70,18 @@ export const SkillsSection = () => {
     setActiveCategory(category);
   }, []);
   return (
-    <section id="skills" className="py-24 px-4 relative bg-secondary/30">
+    <motion.section id="skills" className="py-24 px-4 relative bg-secondary/30"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      viewport={{ once: true }}
+    >
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
           My <span className="text-primary">Skills</span>
         </h2>
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-4 mb-12 relative glass-navbar-skillbar">
+          <span className="glass-navbar-skillbar-border" />
           {categories.map((category, key) => (
             <button
               key={key}
@@ -79,18 +92,28 @@ export const SkillsSection = () => {
                   ? "bg-primary text-primary-foreground"
                   : "bg-secondary/70 text-foreground hover:bg-secondary"
               )}
-              style={{ color: '#C9A0DC' }}
             >
               {categoryLabels[category]}
             </button>
           ))}
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          initial="hidden"
+          whileInView="visible"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.08 }
+            }
+          }}
+          viewport={{ once: true }}
+        >
           {filteredSkills.map((skill, key) => (
-            <SkillCard key={key} skill={skill} />
+            <SkillCard key={key} skill={skill} index={key} />
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };

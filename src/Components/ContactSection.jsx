@@ -1,34 +1,105 @@
 import {
   Instagram,
-  Linkedin,
   Mail,
   MapPin,
-  Phone,
   Send,
   Twitch,
-  Twitter,
-  UserSearch,
   Youtube,
+  UserSearch,
+  Globe,
+  Twitter,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useState, useCallback, useMemo } from "react";
+
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/manjkvkp";
+
+const ContactInfoItem = ({ icon: Icon, title, content, href }) => (
+  <div className="flex items-start space-x-4">
+    <div className="p-3 rounded-full bg-primary/10">
+      <Icon className="h-6 w-6 text-primary" />
+    </div>
+    <div>
+      <h4 className="font-medium">{title}</h4>
+      {href ? (
+        <a href={href} className="text-muted-foreground hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
+          {content}
+        </a>
+      ) : (
+        <span className="text-muted-foreground">{content}</span>
+      )}
+    </div>
+  </div>
+);
+
+const SocialLink = ({ icon: Icon, href, label }) => (
+  <a 
+    href={href} 
+    target="_blank" 
+    rel="noopener noreferrer"
+    aria-label={label} 
+    className="p-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
+  >
+    <Icon size={20} />
+  </a>
+);
 
 export const ContactSection = () => {
-  const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState(null); // null | 'success' | 'error'
 
-  const handleSubmit = (e) => {
+  const socialLinks = useMemo(() => [
+    { icon: Youtube, href: "https://www.youtube.com/@MooCalf", label: "Youtube" },
+    { icon: Twitch, href: "https://www.twitch.tv/moocalf_", label: "Twitch" },
+    { icon: Instagram, href: "https://www.instagram.com/cypher._01?igsh=MWlxeGY1NXpzeWtnbQ==", label: "Instagram" },
+  ], []);
+
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
+    setStatus(null);
+    const form = e.target;
+    const data = new FormData(form);
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: data,
+        headers: {
+          Accept: "application/json",
+        },
       });
-      setIsSubmitting(false);
-    }, 1500);
-  };
+      if (response.ok) {
+        setStatus("success");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+    setIsSubmitting(false);
+  }, []);
+
+  const contactInfoItems = useMemo(() => [
+    {
+      icon: Mail,
+      title: "My Email:",
+      content: "dencypher01@gmail.com",
+      href: "mailto:dencypher01@gmail.com"
+    },
+    {
+      icon: UserSearch,
+      title: "My Reddit:",
+      content: "@MooCalf",
+      href: "https://www.reddit.com/user/MooCalf/"
+    },
+    {
+      icon: Twitter,
+      title: "Twitter:",
+      content: "@MooCalf_",
+      href: "https://x.com/MooCalf_"
+    }
+  ], []);
 
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
@@ -44,61 +115,20 @@ export const ContactSection = () => {
           <div className="space-y-8">
             <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
             <div className="space-y-6 justify-center">
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Mail className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-medium">My Email:</h4>
-                  <a href="mailto:CHANGEME!@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
-                    CHANGEME@gmail.com
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <UserSearch className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-medium">My Reddit:</h4>
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                    REDDITNAME HERE
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <MapPin className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-medium">Location:</h4>
-                  <a className="text-muted-foreground hover:text-primary transition-colors">
-                    Vancouver, BC, Canada
-                  </a>
-                </div>
-              </div>
+              {contactInfoItems.map((item, index) => (
+                <ContactInfoItem key={index} {...item} />
+              ))}
             </div>
             <div className="pt-8">
               <h4 className="font-medium mb-4">Connect With Me</h4>
-              <div className="flex space-x-4 justify-center">
-                <a href="#" target="_blank" aria-label="LinkedIn">
-                  <Linkedin />
-                </a>
-                <a href="#" target="_blank" aria-label="Twitter">
-                  <Twitter />
-                </a>
-                <a href="#" target="_blank" aria-label="Instagram">
-                  <Instagram />
-                </a>
-                <a href="#" target="_blank" aria-label="Twitch">
-                  <Twitch />
-                </a>
-                <a href="#" target="_blank" aria-label="Youtube">
-                  <Youtube />
-                </a>
+              <div className="flex space-x-4 justify-start">
+                {socialLinks.map((socialLink) => (
+                  <SocialLink key={socialLink.label} {...socialLink} />
+                ))}
               </div>
             </div>
           </div>
+          
           {/* Right: Contact Form */}
           <div className="bg-card p-8 rounded-lg shadow-xs">
             <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
@@ -112,7 +142,7 @@ export const ContactSection = () => {
                   id="name"
                   name="name"
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
                   placeholder="MooCalf"
                 />
               </div>
@@ -125,7 +155,7 @@ export const ContactSection = () => {
                   id="email"
                   name="email"
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
                   placeholder="john@gmail.com"
                 />
               </div>
@@ -137,20 +167,24 @@ export const ContactSection = () => {
                   id="message"
                   name="message"
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary resize-none"
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                   placeholder="Hello, I'd like to talk about..."
                 />
               </div>
               <button
                 type="submit"
+                className="cosmic-button w-full flex items-center justify-center gap-2"
                 disabled={isSubmitting}
-                className={cn(
-                  "cosmic-button w-full flex items-center justify-center gap-2"
-                )}
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
                 <Send size={16} />
               </button>
+              {status === "success" && (
+                <p className="text-green-600 pt-2 text-center">Message sent! Thank you for reaching out.</p>
+              )}
+              {status === "error" && (
+                <p className="text-red-600 pt-2 text-center">Something went wrong. Please try again later.</p>
+              )}
             </form>
           </div>
         </div>

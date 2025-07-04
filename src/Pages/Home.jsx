@@ -8,7 +8,6 @@ import { ProjectsSection } from "../Components/ProjectsSection";
 import { ContactSection } from "../Components/ContactSection";
 import { Footer } from "../Components/Footer";
 
-
 export const Home = () => {
     return (
         <div className="min-h-screen bg-background text-foreground overflow-x-hidden">

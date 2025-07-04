@@ -1,5 +1,57 @@
 import { ArrowDown } from "lucide-react"
 import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
+
+const TypewriterText = ({ text, className }) => {
+    const [displayText, setDisplayText] = useState('');
+    const [isTyping, setIsTyping] = useState(true);
+    const [showCursor, setShowCursor] = useState(true);
+
+    useEffect(() => {
+        let currentIndex = 0;
+        let typingInterval;
+        let cursorInterval;
+
+        const typeText = () => {
+            if (isTyping) {
+                if (currentIndex <= text.length) {
+                    setDisplayText(text.slice(0, currentIndex));
+                    currentIndex++;
+                } else {
+                    setIsTyping(false);
+                    setTimeout(() => {
+                        setIsTyping(true);
+                        currentIndex = 0;
+                        setDisplayText('');
+                    }, 2000);
+                }
+            }
+        };
+
+        const blinkCursor = () => {
+            setShowCursor(prev => !prev);
+        };
+
+        typingInterval = setInterval(typeText, 150);
+        cursorInterval = setInterval(blinkCursor, 500);
+
+        return () => {
+            clearInterval(typingInterval);
+            clearInterval(cursorInterval);
+        };
+    }, [text, isTyping]);
+
+    return (
+        <motion.span className={className}>
+            {displayText}
+            {showCursor && <motion.span 
+                className="inline-block w-0.5 h-8 bg-primary ml-1"
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 0.5, repeat: Infinity }}
+            />}
+        </motion.span>
+    );
+};
 
 export const HeroSection = () => {
     const scrollToAbout = () => {
@@ -28,7 +80,7 @@ export const HeroSection = () => {
                         transition={{ delay: 0.2, duration: 0.7, ease: "easeOut" }}
                     >
                         <span>Hi, I'm</span>
-                        <span className="text-primary"> MooCalf</span>
+                        <TypewriterText text=" MooCalf" className="text-primary" />
                     </motion.h1>
                     <motion.p
                         className="text-lg md:text-xl text-muted-foreground max-2xl mx-auto"

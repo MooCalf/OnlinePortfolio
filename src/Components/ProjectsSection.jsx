@@ -1,4 +1,4 @@
-import { ArrowRight, ExternalLink, Globe } from "lucide-react";
+import { ArrowRight, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const projects = [
@@ -7,8 +7,7 @@ const projects = [
     title: "Planet",
     description: "A beautiful landing page app using React and Tailwind.",
     image: "/projects/image.png",
-    tags: ["React", "TailwindCSS", "Supabase"],
-    demoUrl: "#",
+    tags: ["Place Holder"],
     artstationUrl: "https://www.artstation.com/dencypher",
   },
   {
@@ -16,8 +15,7 @@ const projects = [
     title: "Planet",
     description: "A beautiful landing page app using React and Tailwind.",
     image: "/projects/image.png",
-    tags: ["React", "TailwindCSS", "Supabase"],
-    demoUrl: "#",
+    tags: ["Place Holder"],
     artstationUrl: "https://www.artstation.com/dencypher",
   },
   {
@@ -25,8 +23,7 @@ const projects = [
     title: "Planet",
     description: "A beautiful landing page app using React and Tailwind.",
     image: "/projects/image.png",
-    tags: ["React", "TailwindCSS", "Supabase"],
-    demoUrl: "#",
+    tags: ["Place Holder"],
     artstationUrl: "https://www.artstation.com/dencypher",
   },
 ];
@@ -55,14 +52,6 @@ const ProjectCard = ({ project }) => (
       <h3 className="text-xl font-semibold mb-1">{project.title}</h3>
       <div className="flex justify-between items-center">
         <div className="flex space-x-3">
-          <a 
-            href={project.demoUrl} 
-            className="text-foreground/80 hover:text-primary transition-colors duration-300" 
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <ExternalLink size={20} />
-          </a>
           <a 
             href={project.artstationUrl} 
             className="text-foreground/80 hover:text-primary transition-colors duration-300" 

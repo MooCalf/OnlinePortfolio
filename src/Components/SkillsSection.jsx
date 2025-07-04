@@ -1,5 +1,5 @@
-import { useState, useMemo, useCallback } from "react";
-import { cn } from "@/lib/utils";
+import { useState } from "react";
+import { cn } from "@/lib/utils.js";
 import { motion } from "framer-motion";
 
 const skills = [
@@ -36,7 +36,7 @@ const categoryLabels = { all: "All Skills", hard: "Hard Skills", soft: "Soft Ski
 
 const SkillCard = ({ skill, index }) => (
   <motion.div
-    className="bg-card p-6 rounded-lg shadow-xs card-hover"
+    className="skill-card p-6 rounded-lg shadow-xs card-hover"
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ delay: 0.1 + index * 0.08, duration: 0.5, ease: "easeOut" }}
@@ -60,15 +60,10 @@ const SkillCard = ({ skill, index }) => (
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
-  const filteredSkills = useMemo(() =>
-    activeCategory === "all"
-      ? skills
-      : skills.filter((skill) => skill.category === activeCategory),
-    [activeCategory]
-  );
-  const handleCategoryChange = useCallback((category) => {
-    setActiveCategory(category);
-  }, []);
+  const filteredSkills = activeCategory === "all"
+    ? skills
+    : skills.filter((skill) => skill.category === activeCategory);
+
   return (
     <motion.section id="skills" className="py-24 px-4 relative bg-secondary/30"
       initial={{ opacity: 0, y: 40 }}
@@ -77,15 +72,17 @@ export const SkillsSection = () => {
       viewport={{ once: true }}
     >
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          My <span className="text-primary">Skills</span>
-        </h2>
+        <div className="ribbon-section mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-center m-0">
+            My <span className="text-primary">Skills</span>
+          </h2>
+        </div>
         <div className="flex flex-wrap justify-center gap-4 mb-12 relative glass-navbar-skillbar">
           <span className="glass-navbar-skillbar-border" />
           {categories.map((category, key) => (
             <button
               key={key}
-              onClick={() => handleCategoryChange(category)}
+              onClick={() => setActiveCategory(category)}
               className={cn(
                 "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
                 activeCategory === category

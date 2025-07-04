@@ -1,16 +1,14 @@
 import {
   Instagram,
   Mail,
-  MapPin,
   Send,
   Twitch,
   Youtube,
   UserSearch,
-  Globe,
   Twitter,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { useState, useCallback, useMemo } from "react";
+import { cn } from "@/lib/utils.js";
+import { useState } from "react";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/manjkvkp";
 
@@ -46,15 +44,15 @@ const SocialLink = ({ icon: Icon, href, label }) => (
 
 export const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [status, setStatus] = useState(null); // null | 'success' | 'error'
+  const [status, setStatus] = useState(null);
 
-  const socialLinks = useMemo(() => [
+  const socialLinks = [
     { icon: Youtube, href: "https://www.youtube.com/@MooCalf", label: "Youtube" },
     { icon: Twitch, href: "https://www.twitch.tv/moocalf_", label: "Twitch" },
     { icon: Instagram, href: "https://www.instagram.com/cypher._01?igsh=MWlxeGY1NXpzeWtnbQ==", label: "Instagram" },
-  ], []);
+  ];
 
-  const handleSubmit = useCallback(async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setStatus(null);
@@ -78,9 +76,9 @@ export const ContactSection = () => {
       setStatus("error");
     }
     setIsSubmitting(false);
-  }, []);
+  };
 
-  const contactInfoItems = useMemo(() => [
+  const contactInfoItems = [
     {
       icon: Mail,
       title: "My Email:",
@@ -99,7 +97,7 @@ export const ContactSection = () => {
       content: "@MooCalf_",
       href: "https://x.com/MooCalf_"
     }
-  ], []);
+  ];
 
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
@@ -111,7 +109,6 @@ export const ContactSection = () => {
           Have a Project/Idea in mind or wish to collaborate? Feel free to reach out! I am always open to discussing new opportunities.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Left: Contact Info */}
           <div className="space-y-8">
             <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
             <div className="space-y-6 justify-center">
@@ -129,7 +126,6 @@ export const ContactSection = () => {
             </div>
           </div>
           
-          {/* Right: Contact Form */}
           <div className="glass-send-message">
             <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
             <form className="space-y-6" onSubmit={handleSubmit}>

@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./Pages/Home";
 import { MyProjects } from "./Pages/MyProjects";
 import { NotFound } from "./Pages/NotFound";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "@/Components/ui/toaster.jsx";
 
 function App() {
   return (

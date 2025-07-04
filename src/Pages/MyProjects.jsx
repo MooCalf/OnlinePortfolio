@@ -3,8 +3,8 @@ import { Background } from "@/Components/Background";
 import { Footer } from "@/Components/Footer";
 import { ArrowLeft, ExternalLink, Globe, X, Menu } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { cn } from "@/lib/utils";
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { cn } from "@/lib/utils.js";
+import { useEffect, useState } from "react";
 
 const projects = [
   {
@@ -133,20 +133,20 @@ const MyProjectsNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const navItems = useMemo(() => [
+  const navItems = [
     { name: "Home", href: "/" },
     { name: "About", href: "/#about" },
     { name: "Skills", href: "/#skills" },
     { name: "Contact", href: "/#contact" },
-  ], []);
-  const handleScroll = useCallback(() => {
+  ];
+  const handleScroll = () => {
     setIsScrolled(window.scrollY > 10);
-  }, []);
+  };
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
-  const handleNavClick = useCallback((href) => {
+  }, []);
+  const handleNavClick = (href) => {
     setIsMenuOpen(false);
     if (href === "/") {
       navigate("/");
@@ -160,8 +160,8 @@ const MyProjectsNavbar = () => {
         }
       }, 100);
     }
-  }, [navigate]);
-  const renderNavItem = useCallback((item, key) => (
+  };
+  const renderNavItem = (item, key) => (
     <button 
       key={key} 
       onClick={() => handleNavClick(item.href)}
@@ -169,7 +169,7 @@ const MyProjectsNavbar = () => {
     >
       {item.name}
     </button>
-  ), [handleNavClick]);
+  );
   return (
     <nav
       className={cn(
@@ -236,13 +236,10 @@ const MyProjectsNavbar = () => {
 };
 
 const ProjectModal = ({ project, isOpen, onClose, allProjects, onProjectChange }) => {
-  const otherProjects = useMemo(() => 
-    allProjects.filter(p => p.id !== project?.id).slice(0, 6),
-    [allProjects, project?.id]
-  );
-  const handleOtherProjectClick = useCallback((otherProject) => {
+  const otherProjects = allProjects.filter(p => p.id !== project?.id).slice(0, 6);
+  const handleOtherProjectClick = (otherProject) => {
     onProjectChange(otherProject);
-  }, [onProjectChange]);
+  };
   if (!isOpen || !project) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto scrollbar-hide">
@@ -391,23 +388,21 @@ const ProjectCard = ({ project, onClick }) => (
 export const MyProjects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleProjectClick = useCallback((project) => {
+  const handleProjectClick = (project) => {
     setSelectedProject(project);
     setIsModalOpen(true);
-  }, []);
-  const closeModal = useCallback(() => {
+  };
+  const closeModal = () => {
     setIsModalOpen(false);
     setSelectedProject(null);
-  }, []);
-  const handleOtherProjectClick = useCallback((otherProject) => {
+  };
+  const handleOtherProjectClick = (otherProject) => {
     setSelectedProject(otherProject);
     setIsModalOpen(true);
-  }, []);
-  const projectCards = useMemo(() => 
-    projects.map((project) => (
-      <ProjectCard key={project.id} project={project} onClick={handleProjectClick} />
-    )), [handleProjectClick]
-  );
+  };
+  const projectCards = projects.map((project) => (
+    <ProjectCard key={project.id} project={project} onClick={handleProjectClick} />
+  ));
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
       <div className="grid-bg" aria-hidden="true" />
@@ -423,9 +418,11 @@ export const MyProjects = () => {
             >
               <ArrowLeft size={20} />
             </Link>
-            <h1 className="text-3xl md:text-4xl font-bold">
-              My <span className="text-primary">Projects</span>
-            </h1>
+            <div className="ribbon-section flex-1 mb-16">
+              <h1 className="text-3xl md:text-4xl font-bold text-center m-0">
+                My <span className="text-primary">Projects</span>
+              </h1>
+            </div>
           </div>
           <p className="text-muted-foreground max-w-2xl">
             Explore my creative journey through 3D modeling, graphic design, community management, and web development projects.

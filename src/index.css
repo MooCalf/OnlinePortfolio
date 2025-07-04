@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
 
 @theme {
   --color-border: hsl(var(--border));
@@ -36,7 +35,7 @@
       opacity: 1;
     }
     50% {
-  opacity: 0.8;
+      opacity: 0.8;
     }
   }
 
@@ -98,23 +97,23 @@
   padding-inline: 2rem;
 
    @media (width >= 640px) {
-    max-wdith: 640px;
+    max-width: 640px;
    }
 
    @media (width >= 768px) {
-    max-wdith: 768px;
+    max-width: 768px;
    }
 
    @media (width >= 1024px) {
-    max-wdith: 102px4;
+    max-width: 1024px;
    }
 
    @media (width >= 1280px) {
-    max-wdith: 1280px;
+    max-width: 1280px;
    }
 
    @media (width >= 1400px) {
-    max-wdith: 1400px;
+    max-width: 1400px;
    }
 }
 
@@ -318,6 +317,53 @@
   .grid-bg {
     background-size: 20px 20px;
   }
+}
+
+.ribbon-section {
+  width: 100%;
+  border: 1px solid var(--color-border, #d1d5db);
+  border-radius: 0.75rem;
+  background: linear-gradient(90deg, rgba(108,43,215,0.07) 0%, rgba(140,92,246,0.07) 100%);
+  padding: 0.5rem 0 1rem 0;
+  margin: 0 auto 2rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.ribbon-section h1,
+.ribbon-section h2 {
+  margin: 0;
+  width: 100%;
+}
+
+.skill-card {
+  border: 1px solid transparent;
+  background: rgba(82, 8, 201, 0.058);
+  backdrop-filter: blur(0.7px);
+  -webkit-backdrop-filter: blur(0.5px);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 1px solid transparent;
+  background: linear-gradient(90deg, #6C2BD7, #8C5CF6);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: 1;
+}
+
+.skill-card > * {
+  position: relative;
+  z-index: 2;
 }
 
 

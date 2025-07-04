@@ -1,6 +1,6 @@
 import { Lightbulb, LightbulbOff } from "lucide-react";
-import { useEffect, useState, useCallback } from "react";
-import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils.js";
 
 export const ThemeToggle = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -16,7 +16,7 @@ export const ThemeToggle = () => {
         }
     }, []);
 
-    const toggleTheme = useCallback(() => {
+    const toggleTheme = () => {
         if (isDarkMode) {
             document.documentElement.classList.remove("dark");
             localStorage.setItem("theme", "light");
@@ -26,7 +26,7 @@ export const ThemeToggle = () => {
             localStorage.setItem("theme", "dark");
             setIsDarkMode(true);
         }
-    }, [isDarkMode]);
+    };
 
     return (
         <button 

@@ -1,5 +1,4 @@
 import { Briefcase, Code, User, Orbit, Brush } from "lucide-react";
-import { useMemo } from "react";
 import { motion } from "framer-motion";
 
 const DivisionCard = ({ icon: Icon, title, description, index }) => (
@@ -23,7 +22,7 @@ const DivisionCard = ({ icon: Icon, title, description, index }) => (
 );
 
 export const AboutSection = () => {
-  const divisionCards = useMemo(() => [
+  const divisionCards = [
     {
       icon: Orbit,
       title: "Astronomy",
@@ -36,7 +35,7 @@ export const AboutSection = () => {
       description:
         "I enjoy creating digital art, from 3D models to eye-catching graphics. It's my favorite way to express ideas."
     }
-  ], []);
+  ];
 
   return (
     <motion.section id="about" className="py-24 px-4 relative"
@@ -46,9 +45,11 @@ export const AboutSection = () => {
       viewport={{ once: true }}
     >
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          About <span className="text-primary">Me</span>
-        </h2>
+        <div className="ribbon-section mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-center m-0">
+            About <span className="text-primary">Me</span>
+          </h2>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div className="space-y-6"
             initial={{ opacity: 0, x: -30 }}
@@ -91,7 +92,7 @@ export const AboutSection = () => {
 };
 
 export const ExperienceSection = () => {
-  const divisionCards = useMemo(() => [
+  const divisionCards = [
     {
       icon: Code,
       title: "Community Management",
@@ -110,14 +111,16 @@ export const ExperienceSection = () => {
       description:
         "Utilized tools such as Discord bots (e.g., MEE6, Dyno, AutoMod, Wick) to enforce rules, manage roles, and streamline moderation tasks. Collected community feedback and reported recurring issues to development and marketing teams to support ongoing improvement of the game and player experience."
     }
-  ], []);
+  ];
 
   return (
     <section id="experience" className="py-24 px-4 relative">
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          <span className="text-primary">Experience</span>
-        </h2>
+        <div className="ribbon-section mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-center m-0">
+            <span className="text-primary">Experience</span>
+          </h2>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="grid grid-cols-1 gap-6"> 
             {divisionCards.map((card, index) => (

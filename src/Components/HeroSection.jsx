@@ -1,9 +1,8 @@
 import { ArrowDown } from "lucide-react"
-import { useCallback } from "react"
 import { motion } from "framer-motion"
 
 export const HeroSection = () => {
-    const scrollToAbout = useCallback(() => {
+    const scrollToAbout = () => {
         const aboutSection = document.getElementById('about');
         if (aboutSection) {
             aboutSection.scrollIntoView({ 
@@ -11,14 +10,15 @@ export const HeroSection = () => {
                 block: 'start'
             });
         }
-    }, []);
+    };
 
     return <motion.section id="hero"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
+        className="relative"
     >
-        <div className="relative min-h-screen flex flex-col items-center justify-center px-4">
+        <div className="relative min-h-screen flex flex-col items-center justify-center px-4 z-10">
             <div className="container max-w-4xl mx-auto text-center z-10">
                 <div className="space-y-6">
                     <motion.h1
@@ -53,7 +53,7 @@ export const HeroSection = () => {
         </div>
         <motion.button 
             onClick={scrollToAbout}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity duration-300"
+            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity duration-300 z-50"
             aria-label="Scroll to About section"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -61,7 +61,12 @@ export const HeroSection = () => {
             whileHover={{ scale: 1.1 }}
         >
             <span className="text-sm text-muted-foreground mb-2">Scroll</span>
-            <ArrowDown className="h-5 w-5 text-primary" />
+            <motion.div
+                animate={{ y: [0, 5, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+                <ArrowDown className="h-5 w-5 text-primary" />
+            </motion.div>
         </motion.button>
     </motion.section>
 }

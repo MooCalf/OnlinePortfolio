@@ -1,6 +1,5 @@
 import { ArrowRight, ExternalLink, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useMemo } from "react";
 
 const projects = [
   {
@@ -78,31 +77,27 @@ const ProjectCard = ({ project }) => (
   </div>
 );
 
-export const ProjectsSection = () => {
-  const projectCards = useMemo(() => 
-    projects.map((project) => (
-      <ProjectCard key={project.id} project={project} />
-    )), []
-  );
-
-  return (
-    <section id="projects" className="py-24 px-4 relative">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+export const ProjectsSection = () => (
+  <section id="projects" className="py-24 px-4 relative">
+    <div className="container mx-auto max-w-5xl">
+      <div className="ribbon-section mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-center m-0">
           Featured <span className="text-primary">Projects</span>
         </h2>
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          The contents found below are a handful of some of my proudest work I have done since my journey through life
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projectCards}
-        </div>
-        <div className="text-center mt-12">
-          <Link className="cosmic-button w-fit flex items-center mx-auto gap-2" to="/my-projects">
-            Check Out More <ArrowRight size={16} />
-          </Link>
-        </div>
       </div>
-    </section>
-  );
-};
+      <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+        The contents found below are a handful of some of my proudest work I have done since my journey through life
+      </p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((project) => (
+          <ProjectCard key={project.id} project={project} />
+        ))}
+      </div>
+      <div className="text-center mt-12">
+        <Link className="cosmic-button w-fit flex items-center mx-auto gap-2" to="/my-projects">
+          Check Out More <ArrowRight size={16} />
+        </Link>
+      </div>
+    </div>
+  </section>
+);

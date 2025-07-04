@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
-import { useEffect, useState, useCallback } from "react";
+import { cn } from "@/lib/utils.js";
+import { useEffect, useState } from "react";
 import { X, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -15,18 +15,18 @@ export const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const handleScroll = useCallback(() => {
+    const handleScroll = () => {
         setIsScrolled(window.scrollY > 10);
-    }, []);
+    };
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [handleScroll]);
+    }, []);
 
-    const closeMenu = useCallback(() => setIsMenuOpen(false), []);
+    const closeMenu = () => setIsMenuOpen(false);
 
-    const renderNavItem = useCallback((item, key) => {
+    const renderNavItem = (item, key) => {
         const commonClasses = "text-foreground/80 hover:text-primary transition-colors duration-300";
         
         if (item.href.startsWith('#')) {
@@ -52,7 +52,7 @@ export const Navbar = () => {
                 {item.name}
             </Link>
         );
-    }, [closeMenu]);
+    };
 
     return (
         <nav
@@ -97,12 +97,10 @@ export const Navbar = () => {
                     </span>
                 </a>
 
-                {/*Desktop Nav Bar*/}
                 <div className="hidden md:flex space-x-8">
                     {navItems.map((item, key) => renderNavItem(item, key))}
                 </div>
 
-                {/* mobile nav */}
                 <button
                     onClick={() => setIsMenuOpen(prev => !prev)}
                     className="md:hidden p-2 text-foreground z-50"

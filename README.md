@@ -1,6 +1,6 @@
 # MooCalf Portfolio
 
-Hey there! 👋 This is my personal portfolio website where I showcase my work in 3D modeling, graphic design, and community management. I built this with React and had a lot of fun adding smooth animations, a dark/light theme toggle, and an interactive project showcase.
+Hey there! 👋 This is my personal portfolio website where I showcase my work in 3D modeling, graphic design, and community management. I built this with React and quite a numbver of other libraries and resources. This website was inspired by PedroTech, whose youtube tutorial helped me alot in learning how to make this website. I had a lot of fun making all the smooth animations, a dark/light theme, and an interactive project showcase. Hope you all like it!
 
 ## What's Cool About This Site
 
@@ -22,7 +22,7 @@ Hey there! 👋 This is my personal portfolio website where I showcase my work i
 - **Contact**: Ways to get in touch with me
 - **Full projects page**: Every project I've worked on with detailed info
 
-## Tech Stuff I Used
+## Some libraries and stuff I Used
 
 - **React 19** - Because I like staying current
 - **Vite** - Makes development super fast
@@ -56,7 +56,7 @@ Hey there! 👋 This is my personal portfolio website where I showcase my work i
    npm run build
    ```
 
-## How I Organized This
+## The Organized File Structure
 
 ```
 src/
@@ -79,7 +79,7 @@ src/
 └── assets/             # Images and other static files
 ```
 
-## Some Neat Features I Added
+## Some Neat Features I Added - Just Cause
 
 ### Interactive Bits
 - **Theme toggle**: A floating button that switches between dark and light modes
@@ -89,6 +89,7 @@ src/
 - **Mobile menu**: Works great on phones with a hamburger menu
 
 ### Visual Touches
+I used quite alot of references on this page to make it more unique to me and my own styles
 - **Glassmorphism effects**: Those translucent cards with blur effects
 - **Gradient borders**: Purple gradients on buttons and cards
 - **Hover animations**: Cards and buttons respond when you hover over them
@@ -96,31 +97,9 @@ src/
 - **Ribbon sections**: Decorative borders around section headers
 
 ### Performance Stuff
+Made sure to incorpate some elements to help make the website load smoother and perform better
 - **Lazy loading**: Images only load when you need them
 - **Smooth animations**: Using Framer Motion for buttery smooth transitions
 - **Responsive grid**: Everything looks good no matter the screen size
 - **Code splitting**: Pages load faster by only loading what you need
 
-## Browser Support
-
-Works great on:
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## Want to Customize This?
-
-### Updating Content
-- Change the personal info in the component files
-- Replace the placeholder images in `public/projects/`
-- Update project data in `ProjectsSection.jsx` and `MyProjects.jsx`
-- Modify contact info in `ContactSection.jsx`
-
-### Styling Changes
-- Edit the CSS variables in `src/index.css`
-- Change the primary color in the `:root` and `.dark` sections
-- Update gradient effects in the utility classes
-- Customize animations in the CSS keyframes
-
-Feel free to use this as a starting point for your own portfolio! Just remember to make it your own. 😊

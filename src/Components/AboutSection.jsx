@@ -1,4 +1,4 @@
-import { Briefcase, Code, User, Orbit, Brush } from "lucide-react";
+import { Briefcase, Code, User, Orbit, Brush, Download } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
@@ -21,6 +21,52 @@ const DivisionCard = ({ icon: Icon, title, description, index }) => (
     </div>
   </motion.div>
 );
+
+const BusinessCard = ({ index }) => {
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = '/projects/MooCalf Business Card.png';
+    link.download = 'MooCalf Business Card.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  return (
+    <motion.div
+      className="gradient-border p-6 card-hover relative group"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.1 + index * 0.15, duration: 0.6, ease: "easeOut" }}
+      viewport={{ once: true }}
+    >
+      <div className="relative">
+        <img 
+          src="/projects/MooCalf Business Card.png" 
+          alt="MooCalf Business Card" 
+          className="w-full h-auto object-contain rounded-lg"
+        />
+        <div className="absolute bottom-0 left-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+          <div className="bg-black/50 backdrop-blur-sm rounded-b-lg p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="font-semibold text-lg text-white">MooCalf Business Card</h4>
+                <p className="text-white/90 text-sm">Download my business card for easy contact information.</p>
+              </div>
+              <button
+                onClick={handleDownload}
+                className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors duration-200"
+                title="Download Business Card"
+              >
+                <Download className="h-5 w-5 text-primary" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
 export const AboutSection = () => {
   const divisionCards = [
@@ -58,7 +104,7 @@ export const AboutSection = () => {
           >
             <h3 className="text-2xl font-semibold">Hey, I'm MooCalf!</h3>
             <p className="text-muted-foreground">
-              I'm a creative soul who loves art, games, and building online communities. I enjoy learning new things, helping others, and making friends along the way. When I'm not working, you'll find me drawing, gaming, or exploring new tech. Let's connect!
+              I'm a creative soul who loves art, games, and building online communities. I enjoy learning new things, helping others, and making friends along the way. When I'm not working, you'll find me drawing, gaming, or exploring new technology or softwares. <br/><br/>I have a passion for 3D modeling and graphic design, creating everything from environmental designs to realistic scaled planets. One of my biggest interests is astronomy and anything relating to space exploration. This has lead me into making my own fictional universe using my 3D Modeling skills and playing space related games <br/><br/> My experience in community management has taught me the importance of clear communication and fostering positive environments where people can connect and grow together. I'm always excited to collaborate on creative projects and share knowledge with others who share similar interests. I am always eager to connect and make new experiences!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
               <a href="#contact" className="cosmic-button">Get In Touch!</a>
@@ -77,6 +123,7 @@ export const AboutSection = () => {
             {divisionCards.map((card, index) => (
               <DivisionCard key={index} {...card} index={index} />
             ))}
+            <BusinessCard index={2} />
           </motion.div>
         </div>
       </div>

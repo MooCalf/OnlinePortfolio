@@ -27,14 +27,12 @@ export const AboutSection = () => {
     {
       icon: Orbit,
       title: "Astronomy",
-      description:
-        "I love stargazing and learning about the universe. Space inspires my creativity and curiosity."
+      description: "I love stargazing and learning about the universe. Space inspires my creativity and curiosity."
     },
     {
       icon: Brush,
       title: "3D Modeling & Graphic Design",
-      description:
-        "I enjoy creating digital art, from 3D models to eye-catching graphics. It's my favorite way to express ideas."
+      description: "I enjoy creating digital art, from 3D models to eye-catching graphics. It's my favorite way to express ideas."
     }
   ];
 
@@ -63,12 +61,8 @@ export const AboutSection = () => {
               I'm a creative soul who loves art, games, and building online communities. I enjoy learning new things, helping others, and making friends along the way. When I'm not working, you'll find me drawing, gaming, or exploring new tech. Let's connect!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-              <a href="#contact" className="cosmic-button">
-                Get In Touch!
-              </a>
-              <a href="" className="outline-gradient-button">
-                CV Not Available Yet
-              </a>
+              <a href="#contact" className="cosmic-button">Get In Touch!</a>
+              <a href="" className="outline-gradient-button">CV Not Available Yet</a>
             </div>
           </motion.div>
           <motion.div className="grid grid-cols-1 gap-6"
@@ -76,9 +70,7 @@ export const AboutSection = () => {
             whileInView="visible"
             variants={{
               hidden: {},
-              visible: {
-                transition: { staggerChildren: 0.15 }
-              }
+              visible: { transition: { staggerChildren: 0.15 } }
             }}
             viewport={{ once: true }}
           >
@@ -97,20 +89,17 @@ export const ExperienceSection = () => {
     {
       icon: Code,
       title: "Community Management",
-      description:
-        "Managed and moderated multiple community Discord servers of sizes over 150,000+ people for inZOI by KRAFTON, Blender Community, ensuring a safe and engaging environment aligned with the communities guidelines."
+      description: "Managed and moderated multiple community Discord servers of sizes over 150,000+ people for inZOI by KRAFTON, Blender Community, ensuring a safe and engaging environment aligned with the communities guidelines."
     },
     {
       icon: User,
       title: "Player & Community Support",
-      description:
-        "Responded to community inquiries, escalated technical or behavioral issues to appropriate teams, and provided consistent support to players. Collaborated with other moderators and community managers to organize events, implement server improvements, and update moderation protocols."
+      description: "Responded to community inquiries, escalated technical or behavioral issues to appropriate teams, and provided consistent support to players. Collaborated with other moderators and community managers to organize events, implement server improvements, and update moderation protocols."
     },
     {
       icon: Briefcase,
       title: "Moderation & Feedback",
-      description:
-        "Utilized tools such as Discord bots (e.g., MEE6, Dyno, AutoMod, Wick) to enforce rules, manage roles, and streamline moderation tasks. Collected community feedback and reported recurring issues to development and marketing teams to support ongoing improvement of the game and player experience."
+      description: "Utilized tools such as Discord bots (e.g., MEE6, Dyno, AutoMod, Wick) to enforce rules, manage roles, and streamline moderation tasks. Collected community feedback and reported recurring issues to development and marketing teams to support ongoing improvement of the game and player experience."
     }
   ];
 
@@ -134,12 +123,8 @@ export const ExperienceSection = () => {
               I have 5+ years of experience working in and with multiple different projects and programs, all driven by a genuine love for creative and collaborative communities. My journey has allowed me to develop a strong sense of adaptability, and a proactive approach to problem solving. I thrive in team environments, communicate clearly, and am always eager to learn and support others. My dedication, reliability, and positive attitude make me a pleasure to work with and a valuable asset to any team or project.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-              <Link to="/my-experiences" className="cosmic-button">
-                View My Experiences
-              </Link>
-              <a href="" className="outline-gradient-button">
-                CV Not Available Yet
-              </a>
+              <Link to="/my-experiences" className="cosmic-button">View My Experiences</Link>
+              <a href="" className="outline-gradient-button">CV Not Available Yet</a>
             </div>
           </div>
         </div>

@@ -16,16 +16,11 @@ export const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const handleScroll = () => {
-        setIsScrolled(window.scrollY > 10);
-    };
-
     useEffect(() => {
+        const handleScroll = () => setIsScrolled(window.scrollY > 10);
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
-
-    const closeMenu = () => setIsMenuOpen(false);
 
     const renderNavItem = (item, key) => {
         const commonClasses = "text-foreground/80 hover:text-primary transition-colors duration-300";
@@ -36,7 +31,7 @@ export const Navbar = () => {
                     key={key} 
                     href={item.href} 
                     className={commonClasses}
-                    onClick={closeMenu}
+                    onClick={() => setIsMenuOpen(false)}
                 >
                     {item.name}
                 </a>
@@ -48,7 +43,7 @@ export const Navbar = () => {
                 key={key} 
                 to={item.href} 
                 className={commonClasses}
-                onClick={closeMenu}
+                onClick={() => setIsMenuOpen(false)}
             >
                 {item.name}
             </Link>

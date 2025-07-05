@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils.js";
 import { motion } from "framer-motion";
 
 const skills = [
-  // Hard Skills
   { name: "Photoshop", level: 70, category: "hard", description: "Proficient in photo editing, compositing, and digital art creation." },
   { name: "Blender", level: 80, category: "hard", description: "Experienced in 3D modeling, sculpting, and animation for games and art." },
   { name: "Unreal Engine 5", level: 30, category: "hard", description: "Basic knowledge of real-time rendering and environment setup." },
@@ -17,7 +16,6 @@ const skills = [
   { name: "OBS Studio", level: 75, category: "hard", description: "Live streaming and content creation for online platforms." },
   { name: "Discord Bots", level: 80, category: "hard", description: "Experienced in configuring and managing 3rd party Discord bots (e.g., MEE6, Dyno, Wick) for moderation and engagement." },
   { name: "Canva", level: 85, category: "hard", description: "Quick design for social media and marketing materials." },
-  // Soft Skills
   { name: "Team Leadership", level: 85, category: "soft", description: "Guiding teams to achieve goals and foster collaboration." },
   { name: "Communication", level: 90, category: "soft", description: "Clear, empathetic, and effective in all settings." },
   { name: "Problem Solving", level: 80, category: "soft", description: "Creative and analytical approach to overcoming challenges." },
@@ -100,9 +98,7 @@ export const SkillsSection = () => {
           whileInView="visible"
           variants={{
             hidden: {},
-            visible: {
-              transition: { staggerChildren: 0.08 }
-            }
+            visible: { transition: { staggerChildren: 0.08 } }
           }}
           viewport={{ once: true }}
         >

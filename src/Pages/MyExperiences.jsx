@@ -9,12 +9,13 @@ import { useEffect, useState } from "react";
 const discordServers = [
   {
     id: 1,
-    name: "inZOI Community",
-    description: "Official community server for inZOI by KRAFTON. A vibrant space for players to connect, share experiences, and stay updated on the latest game developments.",
+    name: "InZOI",
+    description: "Welcome to the official inZOI Discord Server! We invite inZOI and life sim fans to chat, share and find the latest news",
     memberCount: "150,000+",
-    image: "/projects/image.png",
+    image: "/projects/Experience_IMGs/inzoi_banner_Experience_IMG.png",
+    logo: "/projects/Experience_IMGs/inzoi_logo_Experience_IMG.png",
     inviteUrl: "https://discord.gg/inzoi",
-    role: "Community Manager",
+    role: "Senior Moderator",
     features: ["Game Updates", "Community Events", "Player Support", "Moderation"],
     onlineCount: "12,450",
     boostLevel: 3
@@ -22,63 +23,56 @@ const discordServers = [
   {
     id: 2,
     name: "Blender Community",
-    description: "A creative hub for Blender artists, developers, and enthusiasts. Share your 3D creations, get feedback, and learn from the community.",
-    memberCount: "85,000+",
-    image: "/projects/image.png",
-    inviteUrl: "https://discord.gg/blender",
-    role: "Senior Moderator",
+    description: "Blender 3D, CG, and VFX community for artists, designers, and game developers to chat, create, and collaborate together.",
+    memberCount: "160,000+",
+    image: "/projects/Experience_IMGs/blender_banner_Experience_IMG.png",
+    logo: "/projects/Experience_IMGs/blender_logo_Experience_IMG.png",
+    inviteUrl: "https://discord.gg/yfj6jbd2",
+    role: "Chat Moderator",
     features: ["3D Art Showcase", "Tutorials", "Workshop Events", "Technical Support"],
     onlineCount: "8,230",
-    boostLevel: 2
-  },
-  {
-    id: 3,
-    name: "Creative Design Hub",
-    description: "A collaborative space for designers, artists, and creative professionals. Share portfolios, discuss trends, and find inspiration.",
-    memberCount: "45,000+",
-    image: "/projects/image.png",
-    inviteUrl: "https://discord.gg/creativehub",
-    role: "Moderator",
-    features: ["Portfolio Reviews", "Design Challenges", "Industry Networking", "Resource Sharing"],
-    onlineCount: "3,120",
-    boostLevel: 1
-  },
-  {
-    id: 4,
-    name: "Gaming Community",
-    description: "A diverse gaming community where players from all backgrounds come together to share their passion for games and build lasting friendships.",
-    memberCount: "120,000+",
-    image: "/projects/image.png",
-    inviteUrl: "https://discord.gg/gaming",
-    role: "Community Manager",
-    features: ["Game Nights", "Tournaments", "Voice Channels", "Community Events"],
-    onlineCount: "15,670",
     boostLevel: 3
   },
   {
-    id: 5,
-    name: "Tech & Innovation",
-    description: "A forward-thinking community focused on technology, innovation, and the future of digital experiences.",
-    memberCount: "65,000+",
-    image: "/projects/image.png",
-    inviteUrl: "https://discord.gg/tech",
-    role: "Moderator",
-    features: ["Tech Talks", "Innovation Labs", "Networking", "Knowledge Sharing"],
-    onlineCount: "5,890",
-    boostLevel: 2
+    id: 3,
+    name: "r/inZOI",
+    description: "Welcome to the Official fan-made Reddit page! We invite inZOI and life simulation fans to chat, share and find the latest news.",
+    memberCount: "71,000+",
+    image: "/projects/Experience_IMGs/rinzoi_banner_Experience_IMG.png",
+    logo: "/projects/Experience_IMGs/rinzoi_logo_Experience_IMG.png",
+    inviteUrl: "https://www.reddit.com/r/inZOI/",
+    role: "Head Moderator",
+    features: ["Community Discussions", "Game Updates", "Player Guides", "Fan Content"],
+    onlineCount: "1,200",
+    boostLevel: 0
   },
   {
-    id: 6,
-    name: "Art & Animation",
-    description: "A creative sanctuary for artists, animators, and visual storytellers. Share your work, get critiques, and grow your skills.",
-    memberCount: "75,000+",
-    image: "/projects/image.png",
-    inviteUrl: "https://discord.gg/art",
-    role: "Senior Moderator",
-    features: ["Art Challenges", "Critique Sessions", "Workshop Events", "Portfolio Building"],
-    onlineCount: "6,740",
-    boostLevel: 2
-  }
+    id: 4,
+    name: "r/inZOIMods",
+    description: "A subreddit for the discussion and use of mods for the game, inZOI, a life simulation game where players become gods within the game, allowing them to change everything as they wish and experience endless new stories in various forms of life.",
+    memberCount: "2,000+",
+    image: "/projects/Experience_IMGs/rinzoimods_banner_Experience_IMG.png",
+    logo: "/projects/Experience_IMGs/rinzoimods_logo_Experience_IMG.png",
+    inviteUrl: "https://www.reddit.com/r/inZOIMods/",
+    role: "Owner",
+    features: ["Mod Development", "Resource Sharing", "Technical Support", "Community Events"],
+    onlineCount: "450",
+    boostLevel: 0
+  },
+  {
+    id: 5,
+    name: "r/LifeSimulators",
+    description: "A place to discuss life simulators, by fans for fans. We discuss games like The Sims, inZOI, Paralives and many more!",
+    memberCount: "23,000+",
+    image: "/projects/Experience_IMGs/rlifesimulators_banner__Experience_IMG.png",
+    logo: "/projects/Experience_IMGs/rlifesimulators_logo_Experience_IMG.png",
+    inviteUrl: "https://www.reddit.com/r/LifeSimulators/",
+    role: "Moderator",
+    features: ["Game Discussions", "Community Events", "News & Updates", "Fan Content"],
+    onlineCount: "850",
+    boostLevel: 0
+  },
+
 ];
 
 const MyExperiencesNavbar = () => {
@@ -92,10 +86,8 @@ const MyExperiencesNavbar = () => {
     { name: "Projects", href: "/my-projects" },
     { name: "Contact", href: "/#contact" },
   ];
-  const handleScroll = () => {
-    setIsScrolled(window.scrollY > 10);
-  };
   useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -103,6 +95,8 @@ const MyExperiencesNavbar = () => {
     setIsMenuOpen(false);
     if (href === "/") {
       navigate("/");
+    } else if (href === "/my-projects") {
+      navigate("/my-projects");
     } else if (href.startsWith('/#')) {
       navigate("/");
       setTimeout(() => {
@@ -207,15 +201,17 @@ const ServerModal = ({ server, isOpen, onClose, allServers, onServerChange }) =>
         <div className="flex flex-col md:flex-row h-full">
           <div className="md:w-2/3 p-6 md:p-8 flex flex-col items-center">
             <div className="mb-6 w-full">
-              <img 
-                src={server.image} 
-                alt={server.name} 
-                className="w-full h-40 object-cover rounded-xl mb-4"
-                loading="lazy"
-              />
-              <div className="flex items-center gap-4 mb-4">
+              <div className="overflow-hidden rounded-xl mb-4">
                 <img 
                   src={server.image} 
+                  alt={server.name} 
+                  className="w-full h-40 object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div className="flex items-center gap-4 mb-4">
+                <img 
+                  src={server.logo} 
                   alt={server.name + ' logo'} 
                   className="h-16 w-16 rounded-full border-4 border-background -mt-12 bg-background object-cover shadow-lg"
                 />
@@ -228,8 +224,11 @@ const ServerModal = ({ server, isOpen, onClose, allServers, onServerChange }) =>
                 </div>
               </div>
               <div className="flex items-center gap-2 mb-2">
+                {server.role === "Owner" && <Crown className="h-5 w-5 text-red-500" />}
                 {server.role === "Community Manager" && <Crown className="h-5 w-5 text-yellow-400" />}
+                {server.role === "Head Moderator" && <Shield className="h-5 w-5 text-orange-500" />}
                 {server.role === "Senior Moderator" && <Shield className="h-5 w-5 text-blue-400" />}
+                {server.role === "Chat Moderator" && <Shield className="h-5 w-5 text-green-400" />}
                 {server.role === "Moderator" && <Shield className="h-5 w-5 text-green-400" />}
                 <span className="text-xs text-muted-foreground font-medium">{server.role}</span>
                 {server.boostLevel > 0 && (
@@ -249,7 +248,11 @@ const ServerModal = ({ server, isOpen, onClose, allServers, onServerChange }) =>
               </div>
               <a 
                 href={server.inviteUrl} 
-                className="cosmic-button flex items-center gap-2 text-base mt-2"
+                className={`flex items-center gap-2 text-base mt-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+                  server.name.startsWith('r/') 
+                    ? 'bg-orange-500 hover:bg-orange-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105' 
+                    : 'bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105'
+                }`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -259,7 +262,7 @@ const ServerModal = ({ server, isOpen, onClose, allServers, onServerChange }) =>
             </div>
           </div>
           <div className="md:w-1/3 p-6 md:p-8 border-t md:border-t-0 md:border-l border-border">
-            <h3 className="text-lg font-semibold mb-4">Other Servers</h3>
+            <h3 className="text-lg font-semibold mb-4">Other Communities</h3>
             <div className="grid grid-cols-2 gap-3">
               {otherServers.map((otherServer) => (
                 <div 
@@ -290,7 +293,7 @@ const ServerModal = ({ server, isOpen, onClose, allServers, onServerChange }) =>
 
 const ServerCard = ({ server, onClick }) => (
   <div className="group bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.02] border border-border cursor-pointer" onClick={() => onClick(server)}>
-    <div className="h-48 overflow-hidden relative">
+    <div className="h-48 overflow-hidden relative rounded-t-xl">
       <img 
         src={server.image} 
         alt={server.name} 
@@ -305,8 +308,11 @@ const ServerCard = ({ server, onClick }) => (
         </div>
       )}
       <div className="absolute top-3 right-3">
+        {server.role === "Owner" && <Crown className="h-5 w-5 text-red-500" />}
         {server.role === "Community Manager" && <Crown className="h-5 w-5 text-yellow-400" />}
+        {server.role === "Head Moderator" && <Shield className="h-5 w-5 text-orange-500" />}
         {server.role === "Senior Moderator" && <Shield className="h-5 w-5 text-blue-400" />}
+        {server.role === "Chat Moderator" && <Shield className="h-5 w-5 text-green-400" />}
         {server.role === "Moderator" && <Shield className="h-5 w-5 text-green-400" />}
       </div>
     </div>    
@@ -338,7 +344,11 @@ const ServerCard = ({ server, onClick }) => (
         <span className="text-xs text-muted-foreground font-medium">{server.role}</span>
         <a 
           href={server.inviteUrl} 
-          className="cosmic-button flex items-center gap-2 text-sm"
+          className={`flex items-center gap-2 text-sm px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+            server.name.startsWith('r/') 
+              ? 'bg-orange-500 hover:bg-orange-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105' 
+              : 'bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105'
+          }`}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -387,7 +397,7 @@ export const MyExperiences = () => {
             </div>
           </div>
           <p className="text-muted-foreground max-w-2xl mb-12">
-            Discover the Discord communities I help moderate and manage. Each server represents a unique experience in community building, moderation, and fostering engaging environments.
+            Discover the Discord communities and Reddit subreddits I help moderate and manage. Each community represents a unique experience in community building, moderation, and fostering engaging environments.
           </p>
         </div>
       </div>

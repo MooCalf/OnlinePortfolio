@@ -62,9 +62,7 @@ export const ContactSection = () => {
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
         body: data,
-        headers: {
-          Accept: "application/json",
-        },
+        headers: { Accept: "application/json" },
       });
       if (response.ok) {
         setStatus("success");
@@ -130,9 +128,7 @@ export const ContactSection = () => {
             <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
-                  Your Name
-                </label>
+                <label htmlFor="name" className="block text-sm font-medium mb-2">Your Name</label>
                 <input
                   type="text"
                   id="name"
@@ -143,9 +139,7 @@ export const ContactSection = () => {
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Your Email
-                </label>
+                <label htmlFor="email" className="block text-sm font-medium mb-2">Your Email</label>
                 <input
                   type="email"
                   id="email"
@@ -156,9 +150,7 @@ export const ContactSection = () => {
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Your Message
-                </label>
+                <label htmlFor="message" className="block text-sm font-medium mb-2">Your Message</label>
                 <textarea
                   id="message"
                   name="message"

@@ -46,7 +46,7 @@ const BusinessCard = ({ index }) => {
           alt="MooCalf Business Card" 
           className="w-full h-auto object-contain rounded-lg"
         />
-        <div className="absolute bottom-0 left-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+        <div className="absolute bottom-0 left-0 right-0 opacity-0 group-hover:opacity-100 md:group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-200">
           <div className="bg-black/50 backdrop-blur-sm rounded-b-lg p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -55,7 +55,7 @@ const BusinessCard = ({ index }) => {
               </div>
               <button
                 onClick={handleDownload}
-                className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors duration-200"
+                className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 active:bg-primary/20 transition-colors duration-200"
                 title="Download Business Card"
               >
                 <Download className="h-5 w-5 text-primary" />

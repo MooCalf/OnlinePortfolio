@@ -10,7 +10,7 @@ import {
 import { cn } from "@/lib/utils.js";
 import { useState } from "react";
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/manjkvkp";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mwpbjqrv";
 
 const ContactInfoItem = ({ icon: Icon, title, content, href }) => (
   <div className="flex items-start space-x-4">
@@ -80,8 +80,8 @@ export const ContactSection = () => {
     {
       icon: Mail,
       title: "My Email:",
-      content: "dencypher01@gmail.com",
-      href: "mailto:dencypher01@gmail.com"
+      content: "hello@moocalf.com",
+      href: "mailto:hello@moocalf.com"
     },
     {
       icon: UserSearch,

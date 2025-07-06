@@ -5,6 +5,7 @@ import { ArrowLeft, ExternalLink, Globe, X, Menu, Instagram, Mail, Send, Twitch,
 import { Link, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils.js";
 import { useEffect, useState, useRef } from "react";
+import { Metadata } from "@/Components/Metadata.jsx";
 
 const projects = [
   {
@@ -625,13 +626,18 @@ export const MyProjects = () => {
   );
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
-      <div className="grid-bg" aria-hidden="true" />
-      <MyProjectsNavbar />
-      <ThemeToggle />
-      <Background showEffects={false} />
-      <Sidebar />
-      <MobileCategoryModal />
+    <>
+      <Metadata 
+        pageTitle="Projects"
+        pageDescription="Explore my 3D modeling projects, digital art, and creative works. From Blender to Unreal Engine, discover my passion for space and astronomy-inspired art."
+      />
+      <div className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
+        <div className="grid-bg" aria-hidden="true" />
+        <MyProjectsNavbar />
+        <ThemeToggle />
+        <Background showEffects={false} />
+        <Sidebar />
+        <MobileCategoryModal />
       <div className="pt-24 pb-8 px-4">
         <div className="container mx-auto max-w-7xl">
           <div className="flex items-center gap-4 mb-8">
@@ -644,11 +650,11 @@ export const MyProjects = () => {
             <div className="ribbon-section flex-1 mb-16 relative">
               <button
                 onClick={() => setIsMobileCategoryOpen(true)}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 lg:hidden outline-gradient-button p-2"
+                className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 lg:hidden outline-gradient-button p-2 z-10"
               >
                 <Filter size={16} />
               </button>
-              <h1 className="text-3xl md:text-4xl font-bold text-center m-0">
+              <h1 className="text-3xl md:text-4xl font-bold text-center m-0 pl-12 sm:pl-16 lg:pl-0">
                 My <span className="text-primary">Projects</span>
               </h1>
             </div>
@@ -769,5 +775,6 @@ export const MyProjects = () => {
         onProjectChange={handleOtherProjectClick}
       />
     </div>
+    </>
   );
 }; 

@@ -4,10 +4,12 @@ import { MyProjects } from "./Pages/MyProjects";
 import { MyExperiences } from "./Pages/MyExperiences";
 import { NotFound } from "./Pages/NotFound";
 import { Toaster } from "@/Components/ui/toaster.jsx";
+import { Metadata } from "@/Components/Metadata.jsx";
 
 function App() {
   return (
     <>
+      <Metadata />
       <Toaster />
       <BrowserRouter>
         <Routes>

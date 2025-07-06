@@ -5,6 +5,7 @@ import { ArrowLeft, Users, ExternalLink, Shield, Crown, X, Menu } from "lucide-r
 import { Link, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils.js";
 import { useEffect, useState } from "react";
+import { Metadata } from "@/Components/Metadata.jsx";
 
 const discordServers = [
   {
@@ -391,11 +392,16 @@ export const MyExperiences = () => {
     setIsModalOpen(true);
   };
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
-      <div className="grid-bg" aria-hidden="true" />
-      <MyExperiencesNavbar />
-      <ThemeToggle />
-      <Background />
+    <>
+      <Metadata 
+        pageTitle="Experiences"
+        pageDescription="Community management experience across Discord servers and Reddit communities. Learn about my work in building engaging online spaces."
+      />
+      <div className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
+        <div className="grid-bg" aria-hidden="true" />
+        <MyExperiencesNavbar />
+        <ThemeToggle />
+        <Background />
       <div className="pt-24 pb-8 px-4">
         <div className="container mx-auto max-w-7xl">
           <div className="flex items-center gap-4 mb-8">
@@ -434,5 +440,6 @@ export const MyExperiences = () => {
         onServerChange={handleOtherServerClick}
       />
     </div>
+    </>
   );
 }; 

@@ -55,7 +55,7 @@ const projects = [
   {
     id: 5,
     title: "Earth Art",
-    description: "A art piece inspired by (USERNAME). A mentor of mine really likes their artworks and while helping me learn more about making artistic pieces, told me to use one of their works as reference and remake it. The results were astounding.",
+        description: "A art piece inspired by @gracile_jp on twitter. A mentor of mine really likes their artworks and while helping me learn more about making artistic pieces, told me to use one of their works as reference and remake it. The results were astounding.",
     image: "/projects/Project_IMGs/EarthArt_Project_IMGs.png",
     tags: ["Blender", "3D Modeling", "Planets"],
     demoUrl: "#",

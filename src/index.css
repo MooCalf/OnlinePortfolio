@@ -277,6 +277,38 @@
   z-index: 2;
 }
 
+/* Category-specific card borders */
+.card-border-blockbench {
+  border: 1px solid rgba(30, 147, 217, 0.6); /* #1e93d9 */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+.card-border-blender {
+  border: 1px solid rgba(255, 119, 0, 0.6); /* Blender orange */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+.card-border-ue5 {
+  border: 1px solid rgba(255, 255, 255, 0.6); /* UE5 white */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+.card-border-photoshop {
+  border: 1px solid rgba(0, 102, 204, 0.6); /* Photoshop light deep blue */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+.card-border-illustrator {
+  border: 1px solid rgba(153, 67, 0, 0.6); /* Illustrator dark orange */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+.card-border-aftereffects {
+  border: 1px solid rgba(40, 0, 80, 0.6); /* After Effects dark blueish purple */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
 
 
 

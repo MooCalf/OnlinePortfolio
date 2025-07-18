@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils.js";
 import { useEffect, useState, useRef } from "react";
 import { Metadata } from "@/Components/Metadata.jsx";
+import { motion } from "framer-motion";
 
 const projects = [
   {
@@ -172,6 +173,61 @@ const projects = [
     artstationUrl: "https://www.artstation.com/dencypher",
     height: "h-88",
     category: "Blender"
+  },
+  {
+    id: 16,
+    title: "Fern's Staff",
+    description: "A model of Fern’s Magic Staff from the anime Frieren: Beyond Journey’s End",
+    image: "/projects/Project_IMGs/Ferns Staff.png",
+    tags: ["BlockBench", "Anime", "3D Modeling"],
+    demoUrl: "#",
+    artstationUrl: "https://www.artstation.com/dencypher",
+    height: "h-64",
+    category: "Black Bench"
+  },
+  {
+    id: 17,
+    title: "Denken's Staff",
+    description: "A model of Denken’s Magic Staff from the anime Frieren: Beyond Journey’s End",
+    image: "/projects/Project_IMGs/Denkens Staff.png",
+    tags: ["BlockBench", "Anime", "3D Modeling"],
+    demoUrl: "#",
+    artstationUrl: "https://www.artstation.com/dencypher",
+    height: "h-64",
+    category: "Black Bench"
+  },
+  {
+    id: 18,
+    title: "Ubel's Staff",
+    description: "A model of Ubels’s Magic Staff from the anime Frieren: Beyond Journey’s End",
+    image: "/projects/Project_IMGs/Ubels Staff.png",
+    tags: ["BlockBench", "Anime", "3D Modeling"],
+    demoUrl: "#",
+    artstationUrl: "https://www.artstation.com/dencypher",
+    height: "h-64",
+    category: "Black Bench"
+  },
+  {
+    id: 19,
+    title: "Frieren's Staff",
+    description: "A model of Frieren’s Magic Staff from the anime Frieren: Beyond Journey’s End",
+    image: "/projects/Project_IMGs/Frierens Staff.png",
+    tags: ["BlockBench", "Anime", "3D Modeling"],
+    demoUrl: "#",
+    artstationUrl: "https://www.artstation.com/dencypher",
+    height: "h-64",
+    category: "Black Bench"
+  },
+  {
+    id: 20,
+    title: "Stark's Axe",
+    description: "A model of Stark's Axe from the anime Frieren: Beyond Journey’s End",
+    image: "/projects/Project_IMGs/Starks Axe.png",
+    tags: ["BlockBench", "Anime", "3D Modeling"],
+    demoUrl: "#",
+    artstationUrl: "https://www.artstation.com/dencypher",
+    height: "h-64",
+    category: "Black Bench"
   }
 ];
 
@@ -322,7 +378,7 @@ const ProjectModal = ({ project, isOpen, onClose, allProjects, onProjectChange }
               <img 
                 src={project.image} 
                 alt={project.title} 
-                className="w-full h-auto max-h-[60vh] object-cover rounded-xl"
+                className={`w-full h-auto max-h-[60vh] rounded-xl ${project.category === 'Black Bench' ? 'object-contain bg-black' : 'object-cover'}`}
                 loading="lazy"
               />
             </div>
@@ -384,10 +440,19 @@ const ProjectModal = ({ project, isOpen, onClose, allProjects, onProjectChange }
   );
 };
 
+const categoryBorderClass = {
+  'Blender': 'card-border-blender',
+  'Black Bench': 'card-border-blockbench',
+  'UE5': 'card-border-ue5',
+  'Photoshop': 'card-border-photoshop',
+  'Illustrator': 'card-border-illustrator',
+  'After Effects': 'card-border-aftereffects',
+};
+
 const ProjectCard = ({ project, onClick }) => (
   <div className="break-inside-avoid group">
     <div 
-      className="bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+      className={`bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer ${categoryBorderClass[project.category] || ''}`}
       onClick={() => onClick(project)}
     >
       <div className={`${project.height} overflow-hidden relative`}>
@@ -442,6 +507,7 @@ export const MyProjects = () => {
     { name: "All", label: "All Projects" },
     { name: "Featured Projects", label: "Featured Projects", icon: Star },
     { name: "Blender", label: "Blender" },
+    { name: "Black Bench", label: "Black Bench" },
     { name: "UE5", label: "UE5" },
     { name: "Photoshop", label: "Photoshop" },
     { name: "Illustrator", label: "Illustrator" },
@@ -625,6 +691,10 @@ export const MyProjects = () => {
     </div>
   );
 
+  const navigateToPractiseWebsites = () => {
+    navigate("/practise-websites");
+  };
+
   return (
     <>
       <Metadata 
@@ -660,11 +730,57 @@ export const MyProjects = () => {
             </div>
           </div>
           <p className="text-muted-foreground max-w-2xl">
-            Explore my creative journey through 3D modeling, graphic design, community management, and web development projects.
+            Explore my creative journey through 3D modeling, graphic design, community management, and web development projects. From stunning space-themed renders to innovative web designs, discover how I blend technical skills with artistic vision to create compelling digital experiences.
           </p>
+          {/* Practise Websites Section */}
+          <motion.section
+            className="mt-16 mb-20"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <motion.div
+                className="space-y-6"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2, duration: 0.7, ease: "easeOut" }}
+                viewport={{ once: true }}
+              >
+                <h3 className="text-xl font-semibold">Other Projects & Web Design Practice</h3>
+                <p className="text-muted-foreground">
+                  In this section, you'll find a collection of practice web designs and mini-projects. These are experimental, creative, and fun pages where I try out new layouts, UI ideas, and frontend techniques. Click below to explore!
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-start">
+                  <button onClick={navigateToPractiseWebsites} className="cosmic-button">View Other Projects</button>
+                </div>
+              </motion.div>
+              <motion.div
+                className="hidden md:block"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2, duration: 0.7, ease: "easeOut" }}
+                viewport={{ once: true }}
+              >
+                <img src="/projects/Website Images/Glass.png" alt="Practise Websites Preview" className="rounded-xl shadow-lg w-full max-w-xs mx-auto h-64 object-cover" />
+              </motion.div>
         </div>
+          </motion.section>
+          {/* My Artwork Section */}
+          <motion.section
+            className="mt-16 mb-20"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            <div className="ribbon-section mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-center m-0">
+                My <span className="text-primary">Artwork</span>
+              </h2>
       </div>
-      <div className="px-4 pb-24 lg:pl-24">
+            <div className="pb-24">
         <div className="container mx-auto max-w-7xl">
           {filteredProjects.length > 0 ? (
             <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
@@ -684,88 +800,9 @@ export const MyProjects = () => {
           )}
         </div>
       </div>
-      {/* Contact Section (no form, with button to Home contact) */}
-      <section className="py-24 px-4 relative bg-secondary/30">
-        <div className="container mx-auto max-w-5xl">
-          <div className="ribbon-section mb-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center m-0">
-              Get In <span className="text-primary">Touch</span>
-            </h2>
-          </div>
-          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Like what you see? or wish to collaborate? Feel free to reach out!
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
-              <div className="space-y-6 justify-center">
-                <div className="flex items-start space-x-4">
-                  <div className="p-3 rounded-full bg-primary/10">
-                    <Mail className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium">My Email:</h4>
-                                    <a href="mailto:hello@moocalf.com" className="text-muted-foreground hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
-                  hello@moocalf.com
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="p-3 rounded-full bg-primary/10">
-                    <Globe className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium">My Artstation:</h4>
-                    <a href="https://www.artstation.com/dencypher" className="text-muted-foreground hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
-                      dencypher
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="p-3 rounded-full bg-primary/10">
-                    <Twitter className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium">Twitter:</h4>
-                    <a href="https://x.com/MooCalf_" className="text-muted-foreground hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
-                      @MooCalf_
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="pt-8">
-                <h4 className="font-medium mb-4">Connect With Me</h4>
-                <div className="flex space-x-4 justify-start">
-                  <a href="https://www.youtube.com/@MooCalf" target="_blank" rel="noopener noreferrer" aria-label="Youtube" className="outline-gradient-button"><Youtube size={20} /></a>
-                  <a href="https://www.twitch.tv/moocalf_" target="_blank" rel="noopener noreferrer" aria-label="Twitch" className="outline-gradient-button"><Twitch size={20} /></a>
-                  <a href="https://www.instagram.com/cypher._01?igsh=MWlxeGY1NXpzeWtnbQ==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="outline-gradient-button"><Instagram size={20} /></a>
-                </div>
-              </div>
-            </div>
-            <div className="glass-send-message flex flex-col items-center justify-center text-center">
-              <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
-              <p className="text-muted-foreground mb-8">
-                Ready to start a conversation? Click the button below to get in contact with me.
-              </p>
-              <button
-                className="cosmic-button flex items-center gap-2 px-8 py-4 text-lg"
-                onClick={() => {
-                  navigate("/");
-                  setTimeout(() => {
-                    const contactSection = document.getElementById('contact');
-                    if (contactSection) {
-                      contactSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }, 100);
-                }}
-              >
-                <Send size={20} />
-                Go to Contact Form
-              </button>
-            </div>
-          </div>
+          </motion.section>
         </div>
-      </section>
+      </div>
       <Footer />
       <ProjectModal
         project={selectedProject}

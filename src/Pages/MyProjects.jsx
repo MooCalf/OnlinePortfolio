@@ -228,6 +228,22 @@ const projects = [
     artstationUrl: "https://www.artstation.com/dencypher",
     height: "h-64",
     category: "Black Bench"
+  },
+  {
+    id: 21,
+    title: "Caribbean Book Design",
+    description: "A design requested by a client who wished to express their deep love for Caribbean sports and its history. Their request was quite simple; to incorporate all the caribbean island with is focus being on sports and vivid colors.",
+    image: "/projects/Project_IMGs/Book Design (1).png",
+    images: [
+      "/projects/Project_IMGs/Book Design (1).png",
+      "/projects/Project_IMGs/Book Design (2).png"
+    ],
+    tags: ["Photoshop", "Design", "Graphic Design"],
+    demoUrl: "#",
+    artstationUrl: "https://www.artstation.com/dencypher",
+    height: "h-80",
+    category: "Photoshop",
+    hasMultipleImages: true
   }
 ];
 
@@ -328,7 +344,7 @@ const MyProjectsNavbar = () => {
         </div>
       </nav>
       
-      {/* Mobile Menu - Outside navbar container */}
+
       <div className={cn(
         "fixed top-0 left-0 w-screen h-screen bg-background/95 backdrop-blur-md z-50 flex flex-col items-center justify-center",
         "transition-all duration-300 md:hidden",
@@ -354,11 +370,35 @@ const MyProjectsNavbar = () => {
 };
 
 const ProjectModal = ({ project, isOpen, onClose, allProjects, onProjectChange }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isFullImageOpen, setIsFullImageOpen] = useState(false);
   const otherProjects = allProjects.filter(p => p.id !== project?.id).slice(0, 6);
+  
   const handleOtherProjectClick = (otherProject) => {
     onProjectChange(otherProject);
+    setCurrentImageIndex(0);
+    setIsFullImageOpen(false);
   };
+
+  const handleImageChange = (direction) => {
+    if (project.hasMultipleImages && project.images) {
+      if (direction === 'next') {
+        setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+      } else {
+        setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
+      }
+    }
+  };
+
+  const openFullImage = () => setIsFullImageOpen(true);
+  const closeFullImage = () => setIsFullImageOpen(false);
+
   if (!isOpen || !project) return null;
+
+  const currentImage = project.hasMultipleImages && project.images 
+    ? project.images[currentImageIndex] 
+    : project.image;
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto scrollbar-hide">
       <div 
@@ -374,15 +414,55 @@ const ProjectModal = ({ project, isOpen, onClose, allProjects, onProjectChange }
         </button>
         <div className="flex flex-col lg:flex-row h-full">
           <div className="lg:w-2/3 p-6 lg:p-8">
-            <div className="mb-6">
+            <div className="mb-6 relative">
               <img 
-                src={project.image} 
+                src={currentImage} 
                 alt={project.title} 
                 className={`w-full h-auto max-h-[60vh] rounded-xl ${project.category === 'Black Bench' ? 'object-contain bg-black' : 'object-cover'}`}
                 loading="lazy"
               />
-            </div>
-            <div className="space-y-4">
+              
+              {project.hasMultipleImages && project.images && project.images.length > 1 && (
+                <>
+                  <button
+                    onClick={() => handleImageChange('prev')}
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-all duration-300 z-10"
+                    aria-label="Previous image"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="15,18 9,12 15,6"></polyline>
+                    </svg>
+                  </button>
+                  <button
+                    onClick={() => handleImageChange('next')}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-all duration-300 z-10"
+                    aria-label="Next image"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="9,18 15,12 9,6"></polyline>
+                    </svg>
+                  </button>
+                  
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white text-sm px-3 py-1 rounded-full">
+                    {currentImageIndex + 1} / {project.images.length}
+                  </div>
+                </>
+              )}
+              
+              <button
+                onClick={openFullImage}
+                className="absolute bottom-4 right-4 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 z-10"
+                aria-label="View full image"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 3h6v6"></path>
+                  <path d="M9 21H3v-6"></path>
+                  <path d="M21 3l-7 7"></path>
+                  <path d="M3 21l7-7"></path>
+                </svg>
+              </button>
+        </div>
+        <div className="space-y-4">
               <h2 className="text-3xl font-bold">{project.title}</h2>
               <p className="text-muted-foreground text-lg leading-relaxed">
                 {project.description}
@@ -436,6 +516,59 @@ const ProjectModal = ({ project, isOpen, onClose, allProjects, onProjectChange }
           </div>
         </div>
       </div>
+      
+
+      {isFullImageOpen && (
+        <div className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="relative w-full h-full flex items-center justify-center">
+
+            <button
+              onClick={closeFullImage}
+              className="absolute top-4 right-4 z-10 p-3 rounded-full bg-black/70 hover:bg-black/90 text-white transition-all duration-300 hover:scale-110"
+              aria-label="Close full image view"
+            >
+              <X size={24} />
+            </button>
+            
+
+            <img 
+              src={currentImage} 
+              alt={project.title} 
+              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+              loading="lazy"
+            />
+            
+
+            {project.hasMultipleImages && project.images && project.images.length > 1 && (
+              <>
+                <button
+                  onClick={() => handleImageChange('prev')}
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-4 rounded-full transition-all duration-300 hover:scale-110"
+                  aria-label="Previous image"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="15,18 9,12 15,6"></polyline>
+                  </svg>
+                </button>
+                <button
+                  onClick={() => handleImageChange('next')}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-4 rounded-full transition-all duration-300 hover:scale-110"
+                  aria-label="Next image"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="9,18 15,12 9,6"></polyline>
+                  </svg>
+                </button>
+                
+
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white text-lg px-4 py-2 rounded-full">
+                  {currentImageIndex + 1} / {project.images.length}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -449,50 +582,98 @@ const categoryBorderClass = {
   'After Effects': 'card-border-aftereffects',
 };
 
-const ProjectCard = ({ project, onClick }) => (
-  <div className="break-inside-avoid group">
-    <div 
-      className={`bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer ${categoryBorderClass[project.category] || ''}`}
-      onClick={() => onClick(project)}
-    >
-      <div className={`${project.height} overflow-hidden relative`}>
-        <img 
-          src={project.image} 
-          alt={project.title} 
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-end justify-end p-4 opacity-0 group-hover:opacity-100">
-          <div className="flex gap-2">
-            <a 
-              href={project.artstationUrl} 
-              className="outline-gradient-button p-2"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Globe size={16} />
-            </a>
+const ProjectCard = ({ project, onClick }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  const handleImageChange = (direction, e) => {
+    e.stopPropagation();
+    if (project.hasMultipleImages && project.images) {
+      if (direction === 'next') {
+        setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+      } else {
+        setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
+      }
+    }
+  };
+
+  const currentImage = project.hasMultipleImages && project.images 
+    ? project.images[currentImageIndex] 
+    : project.image;
+
+  return (
+    <div className="break-inside-avoid group">
+      <div 
+        className={`bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer ${categoryBorderClass[project.category] || ''}`}
+        onClick={() => onClick(project)}
+      >
+        <div className={`${project.height} overflow-hidden relative`}>
+          <img 
+            src={currentImage} 
+            alt={project.title} 
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy"
+          />
+          
+          {project.hasMultipleImages && project.images && project.images.length > 1 && (
+            <>
+              <button
+                onClick={(e) => handleImageChange('prev', e)}
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 z-10"
+                aria-label="Previous image"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="15,18 9,12 15,6"></polyline>
+                </svg>
+              </button>
+              <button
+                onClick={(e) => handleImageChange('next', e)}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 z-10"
+                aria-label="Next image"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9,18 15,12 9,6"></polyline>
+                </svg>
+              </button>
+              
+
+              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black/50 text-white text-xs px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {currentImageIndex + 1} / {project.images.length}
+              </div>
+            </>
+          )}
+          
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-end justify-end p-4 opacity-0 group-hover:opacity-100">
+            <div className="flex gap-2">
+              <a 
+                href={project.artstationUrl} 
+                className="outline-gradient-button p-2"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Globe size={16} />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="p-4">
+          <h3 className="font-semibold text-lg mb-2 line-clamp-2">{project.title}</h3>
+          <p className="text-muted-foreground text-sm mb-3 line-clamp-3">{project.description}</p>
+          <div className="flex flex-wrap gap-1">
+            {project.tags.map((tag, index) => (
+              <span
+                key={index}
+                className="px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
           </div>
         </div>
       </div>
-      <div className="p-4">
-        <h3 className="font-semibold text-lg mb-2 line-clamp-2">{project.title}</h3>
-        <p className="text-muted-foreground text-sm mb-3 line-clamp-3">{project.description}</p>
-        <div className="flex flex-wrap gap-1">
-          {project.tags.map((tag, index) => (
-            <span
-              key={index}
-              className="px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export const MyProjects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -732,7 +913,7 @@ export const MyProjects = () => {
           <p className="text-muted-foreground max-w-2xl">
             Explore my creative journey through 3D modeling, graphic design, community management, and web development projects. From stunning space-themed renders to innovative web designs, discover how I blend technical skills with artistic vision to create compelling digital experiences.
           </p>
-          {/* Practise Websites Section */}
+
           <motion.section
             className="mt-16 mb-20"
             initial={{ opacity: 0, y: 40 }}
@@ -767,7 +948,7 @@ export const MyProjects = () => {
               </motion.div>
         </div>
           </motion.section>
-          {/* My Artwork Section */}
+
           <motion.section
             className="mt-16 mb-20"
             initial={{ opacity: 0, y: 40 }}

@@ -17,7 +17,7 @@ const discordServers = [
     logo: "/projects/Experience_IMGs/inzoi_logo_Experience_IMG.png",
     inviteUrl: "https://discord.gg/inzoi",
     role: "Senior Moderator",
-    features: ["Game Updates", "Community Events", "Player Support", "Moderation"],
+    features: ["Game Updates", "Community Events", "Player Support"],
     onlineCount: "12,450",
     boostLevel: 3
   },
@@ -72,6 +72,19 @@ const discordServers = [
     features: ["Game Discussions", "Community Events", "News & Updates", "Fan Content"],
     onlineCount: "850",
     boostLevel: 0
+  },
+  {
+    id: 6,
+    name: "Invite Tracker Support",
+    description: "Invite Tracker is a powerful Discord bot which offers many features such as invite tracking, giveaways, messages tracking and much more.",
+    memberCount: "47,000+",
+    image: "/projects/Experience_IMGs/invitetracker_banner_Experience.png",
+    logo: "/projects/Experience_IMGs/invitetracker_logo_Experience.png",
+    inviteUrl: "https://discord.gg/2DyfDXR92G",
+    role: "Junior Moderator",
+    features: ["User Support", "Bot Support", "Bot Updates"],
+    onlineCount: "3,200",
+    boostLevel: 3
   },
 
 ];
@@ -173,7 +186,7 @@ const MyExperiencesNavbar = () => {
         </div>
       </nav>
       
-      {/* Mobile Menu - Outside navbar container */}
+
       <div className={cn(
         "fixed top-0 left-0 w-screen h-screen bg-background/95 backdrop-blur-md z-50 flex flex-col items-center justify-center",
         "transition-all duration-300 md:hidden",

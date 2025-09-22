@@ -108,7 +108,7 @@ export const AboutSection = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
               <a href="#contact" className="cosmic-button">Get In Touch!</a>
-              <a href="" className="outline-gradient-button">CV Not Available Yet</a>
+              <a href="#contact" className="outline-gradient-button">Resume/CV available on request</a>
             </div>
           </motion.div>
           <motion.div className="grid grid-cols-1 gap-6"
@@ -171,7 +171,7 @@ export const ExperienceSection = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
               <Link to="/my-experiences" className="cosmic-button">View My Experiences</Link>
-              <a href="" className="outline-gradient-button">CV Not Available Yet</a>
+              <a href="#contact" className="outline-gradient-button">Resume/CV available on request</a>
             </div>
           </div>
         </div>

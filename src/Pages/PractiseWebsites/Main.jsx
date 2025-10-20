@@ -155,6 +155,8 @@ const PracticeCard = ({ webpage, onShowSample, onViewWebpage, onOpenModal }) => 
     onClick={() => onOpenModal(webpage)}
     whileHover={{ y: -5 }}
     transition={{ duration: 0.2 }}
+    data-project-card
+    data-project-title={webpage.title}
   >
     <div className="h-48 overflow-hidden relative">
       <img src={webpage.image} alt={webpage.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />

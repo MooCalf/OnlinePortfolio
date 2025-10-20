@@ -416,6 +416,7 @@ const CategoryDropdown = ({ categories, activeCategory, setActiveCategory, isOpe
                   }`}
                   role="menuitem"
                   aria-current={activeCategory === category.name ? 'true' : 'false'}
+                  data-filter={category.name}
                 >
                   {category.icon && <category.icon size={16} />}
                   {category.label}
@@ -429,6 +430,7 @@ const CategoryDropdown = ({ categories, activeCategory, setActiveCategory, isOpe
                   setIsOpen(false);
                 }}
                 className="w-full outline-gradient-button py-2 text-sm font-medium flex items-center justify-center gap-2"
+                data-filter="All"
               >
                 <RotateCcw size={16} />
                 Show All Projects
@@ -453,6 +455,8 @@ const ProjectCard = ({ project, index, onOpenModal }) => (
       ease: "easeOut"
     }}
     onClick={() => onOpenModal(project)}
+    data-project-card
+    data-project-title={project.title}
   >
     <div className="relative overflow-hidden rounded-3xl bg-card/50 backdrop-blur-sm border border-border/50 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-[1.02]">
       {/* Image Container */}

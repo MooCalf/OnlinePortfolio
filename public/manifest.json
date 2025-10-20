@@ -1,21 +1,83 @@
 {
   "name": "MooCalf Portfolio",
   "short_name": "MooCalf",
-  "description": "Creative individual specializing in 3D modeling, graphic design, and community management",
+  "description": "Creative portfolio showcasing 3D modeling, graphic design, and community management work",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#fafafa",
+  "background_color": "#0a0a0a",
   "theme_color": "#6C2BD7",
   "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-US",
+  "categories": ["portfolio", "art", "design", "3d-modeling"],
   "icons": [
     {
       "src": "/projects/MooCalf_Main Logo.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "/projects/MooCalf_Main Logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/projects/MooCalf_Main Logo.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/projects/MooCalf_Main Logo.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/projects/MooCalf_Main Logo.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/projects/MooCalf_Main Logo.png",
+      "sizes": "48x48",
+      "type": "image/png"
     }
   ],
-  "categories": ["art", "design", "portfolio"],
-  "lang": "en",
-  "dir": "ltr"
-} 
+  "screenshots": [
+    {
+      "src": "/projects/MooCalf_Main Logo.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "MooCalf Portfolio Homepage"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Projects",
+      "short_name": "Projects",
+      "description": "View 3D modeling and design projects",
+      "url": "/my-projects",
+      "icons": [
+        {
+          "src": "/projects/MooCalf_Main Logo.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Experience",
+      "short_name": "Experience",
+      "description": "View community management experience",
+      "url": "/my-experiences",
+      "icons": [
+        {
+          "src": "/projects/MooCalf_Main Logo.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

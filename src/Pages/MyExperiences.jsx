@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils.js";
 import { useEffect, useState } from "react";
 import { Metadata } from "@/Components/Metadata.jsx";
+import { StructuredData } from "@/Components/StructuredData.jsx";
 
 const discordServers = [
   {
@@ -410,6 +411,7 @@ export const MyExperiences = () => {
         pageTitle="Experiences"
         pageDescription="Community management experience across Discord servers and Reddit communities. Learn about my work in building engaging online spaces."
       />
+      <StructuredData type="experiences" />
       <div className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
         <div className="grid-bg" aria-hidden="true" />
         <MyExperiencesNavbar />

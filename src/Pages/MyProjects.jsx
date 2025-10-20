@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils.js";
 import { useEffect, useState, useRef } from "react";
 import { Metadata } from "@/Components/Metadata.jsx";
+import { StructuredData } from "@/Components/StructuredData.jsx";
 import { motion } from "framer-motion";
 
 const projects = [
@@ -882,6 +883,7 @@ export const MyProjects = () => {
         pageTitle="Projects"
         pageDescription="Explore my 3D modeling projects, digital art, and creative works. From Blender to Unreal Engine, discover my passion for space and astronomy-inspired art."
       />
+      <StructuredData type="projects" />
       <div className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
         <div className="grid-bg" aria-hidden="true" />
         <MyProjectsNavbar />

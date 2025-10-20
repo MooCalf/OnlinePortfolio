@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>MooCalf Portfolio</title>
+    <link>https://moocalf.com</link>
+    <description>Creative portfolio showcasing 3D modeling, graphic design, and community management work</description>
+    <language>en-US</language>
+    <copyright>© 2024 MooCalf. All rights reserved.</copyright>
+    <managingEditor>moocalf@example.com (MooCalf)</managingEditor>
+    <webMaster>moocalf@example.com (MooCalf)</webMaster>
+    <lastBuildDate>Thu, 19 Dec 2024 00:00:00 GMT</lastBuildDate>
+    <generator>MooCalf Portfolio RSS Generator</generator>
+    <image>
+      <url>https://moocalf.com/projects/MooCalf_Main%20Logo.png</url>
+      <title>MooCalf Portfolio</title>
+      <link>https://moocalf.com</link>
+      <width>144</width>
+      <height>144</height>
+    </image>
+    
+    <atom:link href="https://moocalf.com/rss.xml" rel="self" type="application/rss+xml"/>
+    
+    <item>
+      <title>New 3D Modeling Projects Added</title>
+      <link>https://moocalf.com/my-projects</link>
+      <description>Explore my latest 3D modeling projects including space art, planetary designs, and astronomy-inspired creations.</description>
+      <pubDate>Thu, 19 Dec 2024 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://moocalf.com/my-projects</guid>
+      <category>3D Modeling</category>
+      <category>Digital Art</category>
+      <dc:creator>MooCalf</dc:creator>
+    </item>
+    
+    <item>
+      <title>Community Management Experience</title>
+      <link>https://moocalf.com/my-experiences</link>
+      <description>Learn about my experience managing Discord communities with 150,000+ members for inZOI by KRAFTON and Blender Community.</description>
+      <pubDate>Thu, 19 Dec 2024 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://moocalf.com/my-experiences</guid>
+      <category>Community Management</category>
+      <category>Discord</category>
+      <dc:creator>MooCalf</dc:creator>
+    </item>
+    
+    <item>
+      <title>Portfolio Website Launch</title>
+      <link>https://moocalf.com</link>
+      <description>Welcome to my creative portfolio! Discover my passion for 3D modeling, graphic design, and community management.</description>
+      <pubDate>Thu, 19 Dec 2024 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://moocalf.com</guid>
+      <category>Portfolio</category>
+      <category>Web Design</category>
+      <dc:creator>MooCalf</dc:creator>
+    </item>
+  </channel>
+</rss>

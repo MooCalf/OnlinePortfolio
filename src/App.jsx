@@ -5,6 +5,7 @@ import { MyExperiences } from "./Pages/MyExperiences";
 import { NotFound } from "./Pages/NotFound";
 import { Toaster } from "@/Components/ui/toaster.jsx";
 import { Metadata } from "@/Components/Metadata.jsx";
+import { GoogleAnalytics, GoogleSearchConsole } from "@/Components/Analytics.jsx";
 import PractiseWebsitesMain from "./Pages/PractiseWebsites/Main";
 import LandingPageRedesign from "./Pages/PractiseWebsites/LandingPageRedesign";
 import PortfolioGrid from "./Pages/PractiseWebsites/PortfolioGrid";
@@ -12,6 +13,8 @@ import PortfolioGrid from "./Pages/PractiseWebsites/PortfolioGrid";
 function App() {
   return (
     <>
+      <GoogleAnalytics />
+      <GoogleSearchConsole />
       <Metadata />
       <Toaster />
       <BrowserRouter>

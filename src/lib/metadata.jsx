@@ -132,25 +132,83 @@ export const siteMetadata = {
     type: "website",
     locale: "en_US",
     url: "https://moocalf.com",
-    title: "MooCalf Portfolio",
+    title: "MooCalf Portfolio - 3D Artist & Community Manager",
     description: "Creative individual specializing in 3D modeling, graphic design, and community management. Passionate about astronomy, art, and building engaging online communities.",
     siteName: "MooCalf Portfolio",
+    determiner: "the",
     images: [
       {
-        url: "/projects/MooCalf_Main Logo.png",
-        width: 512,
-        height: 512,
-        alt: "MooCalf Logo - Creative Portfolio",
+        url: "https://moocalf.com/projects/MooCalf_Main%20Logo.png",
+        width: 1200,
+        height: 630,
+        alt: "MooCalf Logo - Creative Portfolio showcasing 3D modeling and community management",
+        type: "image/png",
       },
+      {
+        url: "https://moocalf.com/projects/Project_IMGs/BlackHole1_Project_IMGs.png",
+        width: 1200,
+        height: 630,
+        alt: "3D Black Hole Project - Astronomy-inspired digital art",
+        type: "image/png",
+      },
+      {
+        url: "https://moocalf.com/projects/Project_IMGs/Saturn_Project_IMGs.png",
+        width: 1200,
+        height: 630,
+        alt: "Saturn 3D Model - Realistic planet rendering",
+        type: "image/png",
+      }
     ],
+    audio: [],
+    video: [],
+    article: {
+      publishedTime: "2024-12-19T00:00:00Z",
+      modifiedTime: "2024-12-19T00:00:00Z",
+      expirationTime: null,
+      author: "MooCalf",
+      section: "Portfolio",
+      tag: ["3D Modeling", "Graphic Design", "Community Management", "Digital Art", "Blender", "Discord"]
+    },
+    profile: {
+      firstName: "MooCalf",
+      lastName: "",
+      username: "MooCalf",
+      gender: "unknown"
+    }
   },
   twitter: {
     card: "summary_large_image",
     site: "@MooCalf_",
     creator: "@MooCalf_",
-    title: "MooCalf Portfolio",
+    title: "MooCalf Portfolio - 3D Artist & Community Manager",
     description: "Creative individual specializing in 3D modeling, graphic design, and community management. Passionate about astronomy, art, and building engaging online communities.",
-    images: ["/projects/MooCalf_Main Logo.png"],
+    images: [
+      {
+        url: "https://moocalf.com/projects/MooCalf_Main%20Logo.png",
+        alt: "MooCalf Logo - Creative Portfolio"
+      },
+      {
+        url: "https://moocalf.com/projects/Project_IMGs/BlackHole1_Project_IMGs.png",
+        alt: "3D Black Hole Project"
+      }
+    ],
+    app: {
+      name: {
+        iphone: "MooCalf Portfolio",
+        ipad: "MooCalf Portfolio",
+        googleplay: "MooCalf Portfolio"
+      },
+      id: {
+        iphone: "moocalf-portfolio",
+        ipad: "moocalf-portfolio",
+        googleplay: "moocalf.portfolio"
+      },
+      url: {
+        iphone: "https://moocalf.com",
+        ipad: "https://moocalf.com",
+        googleplay: "https://moocalf.com"
+      }
+    }
   },
   additionalMetaTags: [
     {
@@ -167,11 +225,139 @@ export const siteMetadata = {
     },
     {
       name: "robots",
-      content: "index, follow",
+      content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
     },
     {
       name: "googlebot",
+      content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    },
+    {
+      name: "bingbot",
       content: "index, follow",
+    },
+    {
+      name: "referrer",
+      content: "origin-when-cross-origin",
+    },
+    {
+      name: "format-detection",
+      content: "telephone=no",
+    },
+    {
+      name: "mobile-web-app-capable",
+      content: "yes",
+    },
+    {
+      name: "apple-mobile-web-app-capable",
+      content: "yes",
+    },
+    {
+      name: "apple-mobile-web-app-status-bar-style",
+      content: "default",
+    },
+    {
+      name: "apple-mobile-web-app-title",
+      content: "MooCalf Portfolio",
+    },
+    {
+      name: "application-name",
+      content: "MooCalf Portfolio",
+    },
+    {
+      name: "msapplication-TileColor",
+      content: "#6C2BD7",
+    },
+    {
+      name: "msapplication-config",
+      content: "/browserconfig.xml",
+    },
+    {
+      name: "generator",
+      content: "React + Vite",
+    },
+    {
+      name: "rating",
+      content: "general",
+    },
+    {
+      name: "distribution",
+      content: "global",
+    },
+    {
+      name: "language",
+      content: "en-US",
+    },
+    {
+      name: "geo.region",
+      content: "US",
+    },
+    {
+      name: "geo.placename",
+      content: "United States",
+    },
+    {
+      name: "ICBM",
+      content: "39.8283, -98.5795",
+    },
+    {
+      name: "DC.title",
+      content: "MooCalf Portfolio - 3D Artist & Community Manager",
+    },
+    {
+      name: "DC.creator",
+      content: "MooCalf",
+    },
+    {
+      name: "DC.subject",
+      content: "3D Modeling, Graphic Design, Community Management, Digital Art",
+    },
+    {
+      name: "DC.description",
+      content: "Creative portfolio showcasing 3D modeling, graphic design, and community management work",
+    },
+    {
+      name: "DC.publisher",
+      content: "MooCalf",
+    },
+    {
+      name: "DC.contributor",
+      content: "MooCalf",
+    },
+    {
+      name: "DC.date",
+      content: "2024-12-19",
+    },
+    {
+      name: "DC.type",
+      content: "Portfolio",
+    },
+    {
+      name: "DC.format",
+      content: "text/html",
+    },
+    {
+      name: "DC.identifier",
+      content: "https://moocalf.com",
+    },
+    {
+      name: "DC.source",
+      content: "https://moocalf.com",
+    },
+    {
+      name: "DC.language",
+      content: "en-US",
+    },
+    {
+      name: "DC.relation",
+      content: "https://moocalf.com",
+    },
+    {
+      name: "DC.coverage",
+      content: "Global",
+    },
+    {
+      name: "DC.rights",
+      content: "© 2024 MooCalf. All rights reserved.",
     },
   ],
   additionalLinkTags: [
@@ -184,8 +370,52 @@ export const siteMetadata = {
       href: "/projects/MooCalf_Main Logo.png",
     },
     {
+      rel: "apple-touch-icon",
+      sizes: "180x180",
+      href: "/projects/MooCalf_Main Logo.png",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "32x32",
+      href: "/projects/MooCalf_Main Logo.png",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "16x16",
+      href: "/projects/MooCalf_Main Logo.png",
+    },
+    {
       rel: "manifest",
       href: "/manifest.json",
+    },
+    {
+      rel: "canonical",
+      href: "https://moocalf.com",
+    },
+    {
+      rel: "alternate",
+      type: "application/rss+xml",
+      title: "MooCalf Portfolio RSS Feed",
+      href: "https://moocalf.com/rss.xml",
+    },
+    {
+      rel: "preconnect",
+      href: "https://fonts.googleapis.com",
+    },
+    {
+      rel: "preconnect",
+      href: "https://fonts.gstatic.com",
+      crossorigin: "anonymous",
+    },
+    {
+      rel: "dns-prefetch",
+      href: "https://www.google-analytics.com",
+    },
+    {
+      rel: "dns-prefetch",
+      href: "https://www.googletagmanager.com",
     },
   ],
 };

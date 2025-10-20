@@ -75,14 +75,14 @@ export const SkillsSection = () => {
             My <span className="text-primary">Skills</span>
           </h2>
         </div>
-        <div className="flex justify-center gap-2 sm:gap-4 mb-12 relative glass-navbar-skillbar">
+        <div className="flex justify-center gap-2 sm:gap-4 mb-12 relative glass-navbar-skillbar px-0 w-full max-w-4xl mx-auto">
           <span className="glass-navbar-skillbar-border" />
           {categories.map((category, key) => (
             <button
               key={key}
               onClick={() => setActiveCategory(category)}
               className={cn(
-                "px-3 sm:px-5 py-2 rounded-full transition-colors duration-300 capitalize text-sm sm:text-base flex-1 max-w-[120px] sm:max-w-none",
+                "px-6 sm:px-8 py-1.5 rounded-full transition-colors duration-300 capitalize text-sm sm:text-base flex-1 max-w-[160px] sm:max-w-[220px]",
                 activeCategory === category
                   ? "bg-primary text-primary-foreground"
                   : "bg-secondary/70 text-foreground hover:bg-secondary"

@@ -26,10 +26,33 @@ export const Metadata = ({ pageTitle = "", pageDescription = "" }) => {
       { property: 'og:title', content: metadata.openGraph.title },
       { property: 'og:description', content: metadata.openGraph.description },
       { property: 'og:site_name', content: metadata.openGraph.siteName },
-      { property: 'og:image', content: metadata.openGraph.images[0].url },
-      { property: 'og:image:width', content: metadata.openGraph.images[0].width },
-      { property: 'og:image:height', content: metadata.openGraph.images[0].height },
-      { property: 'og:image:alt', content: metadata.openGraph.images[0].alt },
+      { property: 'og:determiner', content: metadata.openGraph.determiner },
+      
+      // Open Graph Images (multiple images)
+      ...metadata.openGraph.images.map((image, index) => [
+        { property: `og:image`, content: image.url },
+        { property: `og:image:width`, content: image.width },
+        { property: `og:image:height`, content: image.height },
+        { property: `og:image:alt`, content: image.alt },
+        { property: `og:image:type`, content: image.type }
+      ]).flat(),
+      
+      // Open Graph Article tags
+      ...(metadata.openGraph.article ? [
+        { property: 'og:article:published_time', content: metadata.openGraph.article.publishedTime },
+        { property: 'og:article:modified_time', content: metadata.openGraph.article.modifiedTime },
+        { property: 'og:article:author', content: metadata.openGraph.article.author },
+        { property: 'og:article:section', content: metadata.openGraph.article.section },
+        ...metadata.openGraph.article.tag.map(tag => ({ property: 'og:article:tag', content: tag }))
+      ] : []),
+      
+      // Open Graph Profile tags
+      ...(metadata.openGraph.profile ? [
+        { property: 'og:profile:first_name', content: metadata.openGraph.profile.firstName },
+        { property: 'og:profile:last_name', content: metadata.openGraph.profile.lastName },
+        { property: 'og:profile:username', content: metadata.openGraph.profile.username },
+        { property: 'og:profile:gender', content: metadata.openGraph.profile.gender }
+      ] : []),
       
       // Twitter Card tags
       { name: 'twitter:card', content: metadata.twitter.card },
@@ -37,7 +60,25 @@ export const Metadata = ({ pageTitle = "", pageDescription = "" }) => {
       { name: 'twitter:creator', content: metadata.twitter.creator },
       { name: 'twitter:title', content: metadata.twitter.title },
       { name: 'twitter:description', content: metadata.twitter.description },
-      { name: 'twitter:image', content: metadata.twitter.images[0] },
+      
+      // Twitter Images
+      ...metadata.twitter.images.map((image, index) => [
+        { name: `twitter:image`, content: image.url },
+        { name: `twitter:image:alt`, content: image.alt }
+      ]).flat(),
+      
+      // Twitter App tags
+      ...(metadata.twitter.app ? [
+        { name: 'twitter:app:name:iphone', content: metadata.twitter.app.name.iphone },
+        { name: 'twitter:app:name:ipad', content: metadata.twitter.app.name.ipad },
+        { name: 'twitter:app:name:googleplay', content: metadata.twitter.app.name.googleplay },
+        { name: 'twitter:app:id:iphone', content: metadata.twitter.app.id.iphone },
+        { name: 'twitter:app:id:ipad', content: metadata.twitter.app.id.ipad },
+        { name: 'twitter:app:id:googleplay', content: metadata.twitter.app.id.googleplay },
+        { name: 'twitter:app:url:iphone', content: metadata.twitter.app.url.iphone },
+        { name: 'twitter:app:url:ipad', content: metadata.twitter.app.url.ipad },
+        { name: 'twitter:app:url:googleplay', content: metadata.twitter.app.url.googleplay }
+      ] : [])
     ];
 
     // Add additional meta tags

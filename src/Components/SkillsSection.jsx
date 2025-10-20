@@ -35,19 +35,33 @@ const categoryLabels = { all: "All Skills", hard: "Hard Skills", soft: "Soft Ski
 const SkillCard = ({ skill, index }) => (
   <motion.div
     className="skill-card p-6 rounded-lg shadow-xs card-hover"
-    initial={{ opacity: 0, y: 30 }}
+    initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
-    transition={{ delay: 0.1 + index * 0.08, duration: 0.5, ease: "easeOut" }}
-    viewport={{ once: true }}
+    transition={{ 
+      delay: 0.05 + index * 0.03, 
+      duration: 0.3, 
+      ease: [0.25, 0.46, 0.45, 0.94],
+      type: "spring",
+      stiffness: 100,
+      damping: 15
+    }}
+    viewport={{ once: true, margin: "-50px" }}
   >
     <div className="text-left mb-2 flex items-center justify-between">
       <h3 className="font-semibold text-lg">{skill.name}</h3>
       <span className="text-sm text-muted-foreground">{skill.level}%</span>
     </div>
     <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden mb-2">
-      <div 
-        className="bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out]"
-        style={{ width: skill.level + "%" }}
+      <motion.div 
+        className="bg-primary h-2 rounded-full origin-left"
+        initial={{ width: 0 }}
+        whileInView={{ width: skill.level + "%" }}
+        transition={{ 
+          duration: 0.8, 
+          delay: 0.1 + index * 0.05,
+          ease: [0.25, 0.46, 0.45, 0.94]
+        }}
+        viewport={{ once: true, margin: "-50px" }}
       />
     </div>
     {skill.description && (
@@ -98,9 +112,14 @@ export const SkillsSection = () => {
           whileInView="visible"
           variants={{
             hidden: {},
-            visible: { transition: { staggerChildren: 0.08 } }
+            visible: { 
+              transition: { 
+                staggerChildren: 0.02,
+                delayChildren: 0.1
+              } 
+            }
           }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
         >
           {filteredSkills.map((skill, key) => (
             <SkillCard key={key} skill={skill} index={key} />

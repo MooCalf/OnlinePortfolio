@@ -1,23 +1,33 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "@/Components/ThemeToggle";
 import { Background } from "@/Components/Background";
 import { Footer } from "@/Components/Footer";
-import { ArrowLeft, X, Menu } from "lucide-react";
+import { ArrowLeft, X, Menu, Globe } from "lucide-react";
 import { cn } from "@/lib/utils.js";
 import { Metadata } from "@/Components/Metadata.jsx";
 
-const practiceWebpages = [
+const moreProjects = [
   {
     id: 1,
     title: "MOOdern Notes App",
     description: "This is just a Demo Page. A modern notes page utilizing Glass like effects.",
     image: "/projects/Website Images/Glass.png",
-    route: "/practise-websites/landing-page-redesign"
+    route: "/more-projects/landing-page-redesign",
+    type: "internal"
+  },
+  {
+    id: 2,
+    title: "MooStyles",
+    description: "An e-commerce like website for upload all my mods for games",
+    image: "/projects/Banner-Moostyles.webp",
+    route: "https://moostyles.com",
+    type: "external"
   }
 ];
 
-const PractiseWebsitesNavbar = () => {
+const MoreProjectsNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -139,21 +149,202 @@ const PractiseWebsitesNavbar = () => {
   );
 };
 
-const PracticeCard = ({ webpage, onShowSample, onViewWebpage }) => (
-  <div className="group bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
+const PracticeCard = ({ webpage, onShowSample, onViewWebpage, onOpenModal }) => (
+  <motion.div 
+    className="group bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+    onClick={() => onOpenModal(webpage)}
+    whileHover={{ y: -5 }}
+    transition={{ duration: 0.2 }}
+  >
     <div className="h-48 overflow-hidden relative">
       <img src={webpage.image} alt={webpage.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
-    </div>
-    <div className="p-4">
-      <h3 className="font-semibold text-lg mb-2 line-clamp-2">{webpage.title}</h3>
-      <p className="text-muted-foreground text-sm mb-3 line-clamp-3">{webpage.description}</p>
-      <div className="flex gap-2">
-        <button className="cosmic-button px-4 py-2" onClick={() => onViewWebpage(webpage)}>View Webpage</button>
-        <button className="outline-gradient-button px-4 py-2 hidden md:block" onClick={() => onShowSample(webpage)}>Show Sample</button>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute top-3 left-3">
+        <span className="px-3 py-1 bg-primary/90 backdrop-blur-md text-white text-xs font-medium rounded-full">
+          {webpage.type === "external" ? "External" : "Internal"}
+        </span>
       </div>
     </div>
-  </div>
+    <div className="p-4">
+      <h3 className="font-semibold text-lg mb-2 line-clamp-2 group-hover:text-primary transition-colors duration-300">{webpage.title}</h3>
+      <p className="text-muted-foreground text-sm mb-3 line-clamp-3">{webpage.description}</p>
+      <div className="flex gap-2">
+        <button 
+          className="cosmic-button px-4 py-2 flex-1" 
+          onClick={(e) => {
+            e.stopPropagation();
+            onViewWebpage(webpage);
+          }}
+        >
+          {webpage.type === "external" ? "Visit Website" : "View Project"}
+        </button>
+        {webpage.type === "internal" && (
+          <button 
+            className="outline-gradient-button px-4 py-2 hidden md:block" 
+            onClick={(e) => {
+              e.stopPropagation();
+              onShowSample(webpage);
+            }}
+          >
+            Show Sample
+          </button>
+        )}
+      </div>
+    </div>
+  </motion.div>
 );
+
+const ProjectModal = ({ project, isOpen, onClose, allProjects = [] }) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
+  if (!isOpen || !project) return null;
+
+  // Get related projects (same type, excluding current project)
+  const relatedProjects = allProjects
+    .filter(p => p.type === project.type && p.id !== project.id)
+    .slice(0, 3);
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4"
+        onClick={onClose}
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: 20 }}
+          className="relative bg-card rounded-2xl max-w-7xl w-full max-h-[95vh] overflow-y-auto custom-scrollbar"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 z-10 p-2 rounded-full bg-background/80 hover:bg-background transition-colors"
+          >
+            <X size={20} />
+          </button>
+          
+          <div className="p-6 sm:p-8">
+            {/* Main Project Section */}
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-12">
+              {/* Image Section */}
+              <div className="space-y-6">
+                <div className="relative">
+                  <img 
+                    src={project.image} 
+                    alt={project.title || 'Project'}
+                    className="w-full h-96 sm:h-[500px] object-cover rounded-xl shadow-2xl"
+                  />
+                </div>
+                
+                {/* Type Badge */}
+                <div className="flex justify-center">
+                  <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/20">
+                    {project.type === "external" ? "External Project" : "Internal Project"}
+                  </span>
+                </div>
+              </div>
+              
+              {/* Content Section */}
+              <div className="space-y-8">
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm font-medium">
+                      {project.type === "external" ? "External" : "Internal"}
+                    </span>
+                    <span className="text-muted-foreground text-sm">Project #{project.id}</span>
+                  </div>
+                  <h2 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight">{project.title || 'Untitled Project'}</h2>
+                  <p className="text-muted-foreground leading-relaxed text-lg sm:text-xl">{project.description || 'No description available.'}</p>
+                </div>
+                
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a 
+                    href={project.route} 
+                    target={project.type === "external" ? "_blank" : "_self"}
+                    rel={project.type === "external" ? "noopener noreferrer" : ""}
+                    className="flex items-center justify-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-all duration-300 font-medium text-lg shadow-lg hover:shadow-xl"
+                  >
+                    <Globe size={20} />
+                    {project.type === "external" ? "Visit Website" : "View Project"}
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Related Projects Section */}
+            {relatedProjects.length > 0 && (
+              <div className="border-t border-border/50 pt-12">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl sm:text-3xl font-bold mb-2">More {project.type === "external" ? "External" : "Internal"} Projects</h3>
+                  <p className="text-muted-foreground">Explore similar projects</p>
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {relatedProjects.map((relatedProject, index) => (
+                    <motion.div
+                      key={relatedProject.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="group cursor-pointer"
+                      onClick={() => {
+                        onClose();
+                        setTimeout(() => {
+                          // This would need to be handled by the parent component
+                        }, 300);
+                      }}
+                    >
+                      <div className="relative overflow-hidden rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 shadow-lg hover:shadow-2xl transition-all duration-500">
+                        <div className="relative h-48 overflow-hidden">
+                          <img 
+                            src={relatedProject.image} 
+                            alt={relatedProject.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          <div className="absolute top-3 left-3">
+                            <span className="px-3 py-1 bg-primary/90 backdrop-blur-md text-white text-xs font-medium rounded-full">
+                              {relatedProject.type === "external" ? "External" : "Internal"}
+                            </span>
+                          </div>
+                        </div>
+                        
+                        <div className="p-6 space-y-4">
+                          <div className="space-y-2">
+                            <h4 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                              {relatedProject.title}
+                            </h4>
+                            <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
+                              {relatedProject.description}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+};
 
 const SampleOverlay = ({ webpage, onClose }) => (
   <div className="fixed top-0 right-0 h-full w-1/2 z-50 bg-background border-l border-border shadow-2xl animate-slide-in">
@@ -167,23 +358,39 @@ const SampleOverlay = ({ webpage, onClose }) => (
   </div>
 );
 
-export default function PractiseWebsitesMain() {
+export default function MoreProjectsMain() {
   const [sampleWebpage, setSampleWebpage] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleShowSample = (webpage) => setSampleWebpage(webpage);
   const handleCloseSample = () => setSampleWebpage(null);
-  const handleViewWebpage = (webpage) => navigate(webpage.route);
+  const handleViewWebpage = (webpage) => {
+    if (webpage.type === "external") {
+      window.open(webpage.route, "_blank", "noopener,noreferrer");
+    } else {
+      navigate(webpage.route);
+    }
+  };
+  const handleOpenModal = (project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
 
   return (
     <>
       <Metadata 
-        pageTitle="Practise Websites"
-        pageDescription="Explore a collection of practice web designs and layouts. Click 'Show Sample' to preview a design, or 'View Webpage' to open it fully."
+        pageTitle="More Projects"
+        pageDescription="Discover additional projects and creative works. Explore different designs and implementations."
       />
       <div className="min-h-screen bg-background text-foreground overflow-x-hidden relative flex flex-col">
         <div className="grid-bg" aria-hidden="true" />
-        <PractiseWebsitesNavbar />
+        <MoreProjectsNavbar />
         <ThemeToggle />
         <Background showEffects={false} />
         <div className="pt-24 pb-8 px-4 flex-1">
@@ -197,24 +404,31 @@ export default function PractiseWebsitesMain() {
               </Link>
               <div className="ribbon-section flex-1 mb-16 relative">
                 <h1 className="text-3xl md:text-4xl font-bold text-center m-0">
-                  Practise <span className="text-primary">Websites</span>
+                  More <span className="text-primary">Projects</span>
                 </h1>
               </div>
             </div>
             <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto px-4">
-              Explore a collection of practice web designs and layouts. Click "Show Sample" to preview a design, or "View Webpage" to open it fully.
+              Discover additional projects and creative works. Explore different designs and implementations.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 px-4 sm:px-0">
-              {practiceWebpages.map((webpage) => (
+              {moreProjects.map((webpage) => (
                 <PracticeCard
                   key={webpage.id}
                   webpage={webpage}
                   onShowSample={handleShowSample}
                   onViewWebpage={handleViewWebpage}
+                  onOpenModal={handleOpenModal}
                 />
               ))}
             </div>
             {sampleWebpage && <SampleOverlay webpage={sampleWebpage} onClose={handleCloseSample} />}
+            <ProjectModal 
+              project={selectedProject}
+              isOpen={isModalOpen}
+              onClose={handleCloseModal}
+              allProjects={moreProjects}
+            />
           </div>
         </div>
         <Footer />

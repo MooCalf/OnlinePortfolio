@@ -200,9 +200,9 @@ export default function GlassMorphismNotes() {
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gray-100">
       <div className="fixed top-4 left-4 z-50">
-        <Link to="/practise-websites" className="custom-glass-btn flex items-center gap-2 p-2">
+        <Link to="/more-projects" className="custom-glass-btn flex items-center gap-2 p-2">
           <ArrowLeft size={18} />
-          <span>Back to Practise Websites</span>
+          <span>Back to More Projects</span>
         </Link>
       </div>
       <div className="absolute inset-0 z-0">

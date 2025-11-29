@@ -17,7 +17,6 @@ Hey there! 👋 This is my personal portfolio website where I showcase my work i
 - **Hero section**: A quick intro with a button that smoothly takes you to the good stuff
 - **About me**: Who I am and what I do (with some animated cards for flair)
 - **Experience**: My professional journey and community management work
-- **Skills**: What I'm good at, organized into hard skills and soft skills
 - **Featured projects**: The projects I'm most proud of
 - **Contact**: Ways to get in touch with me
 - **Full projects page**: Every project I've worked on with detailed info
@@ -64,7 +63,6 @@ src/
 │   ├── ui/             # Basic UI stuff (toast notifications)
 │   ├── HeroSection.jsx # The landing section
 │   ├── AboutSection.jsx # About me and experience
-│   ├── SkillsSection.jsx # My skills showcase
 │   ├── ProjectsSection.jsx # Featured projects
 │   ├── ContactSection.jsx # Contact form and info
 │   ├── Navbar.jsx      # Navigation menu
@@ -83,7 +81,6 @@ src/
 
 ### Interactive Bits
 - **Theme toggle**: A floating button that switches between dark and light modes
-- **Skill filtering**: You can toggle between Hard Skills, Soft Skills, or see them all
 - **Project modals**: Click on a project to see more details
 - **Smooth scrolling**: Everything moves smoothly between sections
 - **Mobile menu**: Works great on phones with a hamburger menu

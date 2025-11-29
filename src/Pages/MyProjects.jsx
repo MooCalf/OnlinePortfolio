@@ -240,7 +240,6 @@ const MyProjectsNavbar = () => {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "About", href: "/#about" },
-    { name: "Skills", href: "/#skills" },
     { name: "Experience", href: "/my-experiences" },
     { name: "Contact", href: "/#contact" },
   ];

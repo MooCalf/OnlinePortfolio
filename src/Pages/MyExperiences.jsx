@@ -1,7 +1,7 @@
 import { ThemeToggle } from "@/Components/ThemeToggle";
 import { Background } from "@/Components/Background";
 import { Footer } from "@/Components/Footer";
-import { ArrowLeft, Users, ExternalLink, Shield, Crown, X, Menu } from "lucide-react";
+import { ArrowLeft, Users, ExternalLink, Shield, Crown, X, Menu, Briefcase } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils.js";
 import { useEffect, useState } from "react";
@@ -88,6 +88,44 @@ const discordServers = [
     boostLevel: 3
   },
 
+];
+
+const otherExperiences = [
+  {
+    id: 1,
+    name: "Krafton",
+    title: "Contracted Consultant & Assistant Moderator",
+    description: "In the past, I've worked as a contracted consultant and assistant moderator for game titles under Krafton. My role consist of but is not limited to providing strategic input on community management, training staff on how to use different moderation tools and helping establish effective moderation workflows. I collaborated directly with the development team to align community standards with the game's goals, always keeping the player experience at the forefront of making decisions.",
+    logo: "/projects/Experience_IMGs/krafton_logo_Experience.jpg",
+    banner: "/projects/Experience_IMGs/krafton_banner_Experience.jpg",
+    type: "consulting"
+  },
+  {
+    id: 2,
+    name: "Genr8 Studio",
+    title: "3D Artist & Graphic Designer",
+    description: "During my time at Genr8 Studio, I worked as a 3D artist and graphic designer on various projects. I created visual assets and digital artwork, honing my skills in 3D modeling and texturing along the way. Working alongside a talented creative team taught me how to balance technical precision with artistic vision, and I'm proud of the high quality content they taught me and the many projects they allowed be to be apart of.",
+    logo: "/projects/Experience_IMGs/genr8_logo_Experience.png",
+    banner: "/projects/Experience_IMGs/genr8_banner_Experience.webp",
+    type: "employment"
+  },
+  {
+    id: 3,
+    name: "Levellr",
+    title: "Volunteer Moderator",
+    description: "I volunteer my services as a moderator and community manager for many6 communities that need assistance. Through Levellr, I gain the ability to help set up communities, provide support for them and even the artists and owners behind these communities",
+    logo: "/projects/Experience_IMGs/Levellr_logo_Experience.webp",
+    banner: "/projects/Experience_IMGs/Levellr_banner_Experience.png",
+    type: "volunteer"
+  },
+  {
+    id: 4,
+    name: "Freelancing",
+    title: "Independent Creative Professional",
+    description: "I've taken on many freelance projects over the years, covering everything from community development to graphic design, 3D art and digital art. I've built community spaces from the ground up, setting them up with operational standards that match the clients needs and best practices. I've also created custom logos, graphical artwork, and visual branding for clients. Every project is different, and I make sure each one meets the client's specific needs while maintaining a high quality standards.",
+    icon: Briefcase,
+    type: "freelance"
+  }
 ];
 
 const MyExperiencesNavbar = () => {
@@ -389,6 +427,47 @@ const ServerCard = ({ server, onClick }) => (
   </div>
 );
 
+const ExperienceCard = ({ experience }) => {
+  const Icon = experience.icon;
+  return (
+    <div className="experience-card group">
+      <div className="experience-card-banner">
+        {experience.banner ? (
+          <img 
+            src={experience.banner} 
+            alt={experience.name} 
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy"
+          />
+        ) : (
+          <div className="experience-card-banner-gradient" />
+        )}
+      </div>
+      <div className="experience-card-logo">
+        {experience.logo ? (
+          <img 
+            src={experience.logo} 
+            alt={experience.name + ' logo'} 
+            className="experience-card-logo-img"
+            loading="lazy"
+          />
+        ) : Icon && (
+          <div className="experience-card-logo-icon">
+            <Icon />
+          </div>
+        )}
+      </div>
+      <div className="experience-card-content">
+        <div className="experience-card-header">
+          <h3 className="experience-card-title">{experience.name}</h3>
+          <p className="experience-card-subtitle">{experience.title}</p>
+        </div>
+        <p className="experience-card-description">{experience.description}</p>
+      </div>  
+    </div>
+  );
+};
+
 export const MyExperiences = () => {
   const [selectedServer, setSelectedServer] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -436,11 +515,30 @@ export const MyExperiences = () => {
           </p>
         </div>
       </div>
-      <div className="px-4 pb-24">
+      <div className="px-4 pb-12">
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {discordServers.map((server) => (
               <ServerCard key={server.id} server={server} onClick={handleServerClick} />
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="px-4 pb-24">
+        <div className="container mx-auto max-w-7xl">
+          <div className="mb-12">
+            <div className="ribbon-section mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-center m-0">
+                Other <span className="text-primary">Experiences</span>
+              </h2>
+            </div>
+            <p className="text-muted-foreground max-w-2xl mx-auto text-center">
+              Beyond community management, I've worked in various professional capacities including consulting, creative design, and freelance projects.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 sm:gap-5 md:gap-6 max-w-5xl mx-auto">
+            {otherExperiences.map((experience) => (
+              <ExperienceCard key={experience.id} experience={experience} />
             ))}
           </div>
         </div>

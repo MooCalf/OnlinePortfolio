@@ -9,6 +9,9 @@ const experienceLogos = [
   "/projects/Experience_IMGs/rinzoimods_logo_Experience_IMG.png",
   "/projects/Experience_IMGs/rlifesimulators_logo_Experience_IMG.png",
   "/projects/Experience_IMGs/invitetracker_logo_Experience.png",
+  "/projects/Experience_IMGs/krafton_logo_Experience.jpg",
+  "/projects/Experience_IMGs/genr8_logo_Experience.png",
+  "/projects/Experience_IMGs/Levellr_logo_Experience.webp",
 ];
 
 const ExperienceCard = ({ icon: Icon, title, description, index }) => (
@@ -95,7 +98,9 @@ export const ExperienceSection = () => {
             </div>
           </motion.div>
         </div>
-        <div className="mt-8 overflow-hidden py-2">
+        <div className="carousel-container">
+          <div className="carousel-fade-left" />
+          <div className="carousel-fade-right" />
           <motion.div
             className="flex gap-12 items-center"
             animate={{

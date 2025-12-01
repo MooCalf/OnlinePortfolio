@@ -87,6 +87,32 @@ const discordServers = [
     onlineCount: "3,200",
     boostLevel: 3
   },
+  {
+    id: 7,
+    name: "NuvGuard",
+    description: "A Minecraft Discord community based on the 'Nuvguard' server.",
+    memberCount: "2,600+",
+    image: "/projects/Experience_IMGs/nuvguard_banner_experience.png",
+    logo: "/projects/Experience_IMGs/nuvguard_logo_experience.webp",
+    inviteUrl: "https://discord.gg/c38jwYuGmA",
+    role: "Moderator",
+    features: ["Minecraft Server", "Community Events", "Player Support", "Game Updates"],
+    onlineCount: "180",
+    boostLevel: 0
+  },
+  {
+    id: 8,
+    name: "Pineapple's Heaven",
+    description: "A Minecraft Discord community centralizing P1nero's modding community from curseforge.",
+    memberCount: "3,600+",
+    image: "/projects/Experience_IMGs/pineapplesheaven_banner_experience.png",
+    logo: "/projects/Experience_IMGs/pineapplesheaven_banner_experience.png",
+    inviteUrl: "https://discord.gg/7nmc8hqSYg",
+    role: "Co-Owner",
+    features: ["Minecraft Server", "Community Management", "Server Development", "Player Events"],
+    onlineCount: "250",
+    boostLevel: 0
+  },
 
 ];
 
@@ -292,6 +318,7 @@ const ServerModal = ({ server, isOpen, onClose, allServers, onServerChange }) =>
               </div>
               <div className="flex items-center gap-2 mb-2">
                 {server.role === "Owner" && <Crown className="h-5 w-5 text-red-500" />}
+                {server.role === "Co-Owner" && <Crown className="h-5 w-5 text-purple-500" />}
                 {server.role === "Community Manager" && <Crown className="h-5 w-5 text-yellow-400" />}
                 {server.role === "Head Moderator" && <Shield className="h-5 w-5 text-orange-500" />}
                 {server.role === "Senior Moderator" && <Shield className="h-5 w-5 text-blue-400" />}
@@ -376,6 +403,7 @@ const ServerCard = ({ server, onClick }) => (
       )}
       <div className="absolute top-3 right-3">
         {server.role === "Owner" && <Crown className="h-5 w-5 text-red-500" />}
+        {server.role === "Co-Owner" && <Crown className="h-5 w-5 text-purple-500" />}
         {server.role === "Community Manager" && <Crown className="h-5 w-5 text-yellow-400" />}
         {server.role === "Head Moderator" && <Shield className="h-5 w-5 text-orange-500" />}
         {server.role === "Senior Moderator" && <Shield className="h-5 w-5 text-blue-400" />}

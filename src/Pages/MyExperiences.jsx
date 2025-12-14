@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils.js";
 import { useEffect, useState } from "react";
 import { Metadata } from "@/Components/Metadata.jsx";
 import { StructuredData } from "@/Components/StructuredData.jsx";
+import { motion } from "framer-motion";
 
 const discordServers = [
   {
@@ -114,6 +115,18 @@ const discordServers = [
     boostLevel: 0
   },
 
+];
+
+const experienceLogos = [
+  "/projects/Experience_IMGs/inzoi_logo_Experience_IMG.png",
+  "/projects/Experience_IMGs/blender_logo_Experience_IMG.png",
+  "/projects/Experience_IMGs/rinzoi_logo_Experience_IMG.png",
+  "/projects/Experience_IMGs/rinzoimods_logo_Experience_IMG.png",
+  "/projects/Experience_IMGs/rlifesimulators_logo_Experience_IMG.png",
+  "/projects/Experience_IMGs/invitetracker_logo_Experience.png",
+  "/projects/Experience_IMGs/krafton_logo_Experience.jpg",
+  "/projects/Experience_IMGs/genr8_logo_Experience.png",
+  "/projects/Experience_IMGs/Levellr_logo_Experience.webp",
 ];
 
 const otherExperiences = [
@@ -470,20 +483,20 @@ const ExperienceCard = ({ experience }) => {
         ) : (
           <div className="experience-card-banner-gradient" />
         )}
-      </div>
-      <div className="experience-card-logo">
-        {experience.logo ? (
-          <img 
-            src={experience.logo} 
-            alt={experience.name + ' logo'} 
-            className="experience-card-logo-img"
-            loading="lazy"
-          />
-        ) : Icon && (
-          <div className="experience-card-logo-icon">
-            <Icon />
-          </div>
-        )}
+        <div className="experience-card-logo">
+          {experience.logo ? (
+            <img 
+              src={experience.logo} 
+              alt={experience.name + ' logo'} 
+              className="experience-card-logo-img"
+              loading="lazy"
+            />
+          ) : Icon && (
+            <div className="experience-card-logo-icon">
+              <Icon />
+            </div>
+          )}
+        </div>
       </div>
       <div className="experience-card-content">
         <div className="experience-card-header">
@@ -511,6 +524,8 @@ export const MyExperiences = () => {
     setSelectedServer(otherServer);
     setIsModalOpen(true);
   };
+  const discordCommunities = discordServers.filter(server => !server.name.startsWith('r/') && server.inviteUrl.includes('discord.gg'));
+  const redditServers = discordServers.filter(server => server.name.startsWith('r/') || server.inviteUrl.includes('reddit.com'));
   return (
     <>
       <Metadata 
@@ -538,17 +553,53 @@ export const MyExperiences = () => {
               </h1>
             </div>
           </div>
-          <p className="text-muted-foreground max-w-2xl mb-12">
-            Discover the Discord communities and Reddit subreddits I help moderate and manage. Each community represents a unique experience in community building, moderation, and fostering engaging environments.
-          </p>
-        </div>
-      </div>
-      <div className="px-4 pb-12">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {discordServers.map((server) => (
-              <ServerCard key={server.id} server={server} onClick={handleServerClick} />
-            ))}
+          <div className="flex flex-col md:flex-row gap-8 items-start mb-12">
+            <p className="text-muted-foreground max-w-2xl flex-1">
+              With 5+ years of experience across community management, creative design, and professional consulting, I bring a unique blend of technical expertise and creative vision to every project. My proven track record includes managing large-scale online communities, delivering high-quality creative assets, and providing strategic guidance to development teams. I thrive in collaborative environments and am committed to driving results while maintaining the highest standards of quality and professionalism.
+            </p>
+            <div className="flex flex-col items-start md:items-end gap-4 w-full md:w-auto">
+              <p className="text-muted-foreground text-sm max-w-xs">
+                Explore my portfolio of creative projects and professional work.
+              </p>
+              <Link 
+                to="/my-projects" 
+                className="cosmic-button w-full max-w-xs"
+              >
+                View Projects
+              </Link>
+            </div>
+          </div>
+          <div className="carousel-container w-full">
+            <div className="carousel-fade-left" />
+            <div className="carousel-fade-right" />
+            <motion.div
+              className="flex gap-12 items-center"
+              animate={{
+                x: [0, -112 * experienceLogos.length],
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 40,
+                  ease: "linear",
+                },
+              }}
+            >
+              {[...experienceLogos, ...experienceLogos].map((logo, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0"
+                >
+                  <img
+                    src={logo}
+                    alt="Experience logo"
+                    className="w-16 h-16 rounded-full object-cover opacity-50"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </div>
@@ -567,6 +618,30 @@ export const MyExperiences = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 sm:gap-5 md:gap-6 max-w-5xl mx-auto">
             {otherExperiences.map((experience) => (
               <ExperienceCard key={experience.id} experience={experience} />
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="px-4 pb-12">
+        <div className="container mx-auto max-w-7xl">
+          <div className="mb-12">
+            <div className="ribbon-section mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-center m-0">
+                Popular <span className="text-primary">Platforms</span>
+              </h2>
+            </div>
+            <p className="text-muted-foreground max-w-2xl mx-auto text-center mb-8">
+              Discover the Discord communities and Reddit subreddits I help moderate and manage. Each community represents a unique experience in community building, moderation, and fostering engaging environments.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {discordCommunities.map((server) => (
+              <ServerCard key={server.id} server={server} onClick={handleServerClick} />
+            ))}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {redditServers.map((server) => (
+              <ServerCard key={server.id} server={server} onClick={handleServerClick} />
             ))}
           </div>
         </div>

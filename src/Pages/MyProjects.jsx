@@ -231,6 +231,18 @@ const projects = [
     category: "Product Design",
     hasMultipleImages: true
   }
+  ,
+  {
+    id: 21,
+    title: "Earth Satallite Image",
+    description: "Drifting off into nothingness...soon to become a 'Pale Blue Dot'. Earth really is a marvel, even when done digitally. The model was made using 3 simple cubes turned into spheres, textured by a 21k resolution mapping of the earth texture provided by NASA images. Its amazing how we are able to create entire worlds using simple methods.",
+    image: "/projects/Project_IMGs/Earth_Satallite.png",
+    tags: ["Blender"],
+    demoUrl: "#",
+    artstationUrl: "https://www.artstation.com/dencypher",
+    height: "h-80",
+    category: "Blender"
+  }
 ];
 
 const MyProjectsNavbar = () => {
@@ -760,7 +772,7 @@ export const MyProjects = () => {
     { name: "All", label: "All Projects" },
     { name: "Featured Projects", label: "Featured Projects", icon: Star },
     { name: "Blender", label: "Blender" },
-    { name: "Black Bench", label: "Black Bench" },
+    { name: "BlockBench", label: "BlockBench" },
     { name: "UE5", label: "UE5" },
     { name: "Photoshop", label: "Photoshop" },
     { name: "Illustrator", label: "Illustrator" },

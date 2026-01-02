@@ -86,7 +86,8 @@ const discordServers = [
     role: "Junior Moderator",
     features: ["User Support", "Bot Support", "Bot Updates"],
     onlineCount: "3,200",
-    boostLevel: 3
+    boostLevel: 3,
+    isFormer: true
   },
   {
     id: 7,
@@ -337,8 +338,12 @@ const ServerModal = ({ server, isOpen, onClose, allServers, onServerChange }) =>
                 {server.role === "Senior Moderator" && <Shield className="h-5 w-5 text-blue-400" />}
                 {server.role === "Chat Moderator" && <Shield className="h-5 w-5 text-green-400" />}
                 {server.role === "Moderator" && <Shield className="h-5 w-5 text-green-400" />}
+                {server.role === "Junior Moderator" && <Shield className="h-5 w-5 text-green-400" />}
                 <span className="text-xs text-muted-foreground font-medium">{server.role}</span>
-                {server.boostLevel > 0 && (
+                {server.isFormer && (
+                  <span className="ml-2 px-2 py-1 rounded-full bg-gradient-to-r from-red-500/20 to-red-600/25 text-xs text-white font-semibold border border-red-400/30">Former</span>
+                )}
+                {server.boostLevel > 0 && !server.isFormer && (
                   <span className="ml-2 px-2 py-1 rounded-full bg-purple-500/80 text-xs text-white">Level {server.boostLevel} Boost</span>
                 )}
               </div>
@@ -353,19 +358,21 @@ const ServerModal = ({ server, isOpen, onClose, allServers, onServerChange }) =>
                   </span>
                 ))}
               </div>
-              <a 
-                href={server.inviteUrl} 
-                className={`flex items-center gap-2 text-base mt-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
-                  server.name.startsWith('r/') 
-                    ? 'bg-orange-500 hover:bg-orange-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105' 
-                    : 'bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105'
-                }`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Click to Join
-                <ExternalLink size={16} />
-              </a>
+              {!server.isFormer && (
+                <a 
+                  href={server.inviteUrl} 
+                  className={`flex items-center gap-2 text-base mt-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+                    server.name.startsWith('r/') 
+                      ? 'bg-orange-500 hover:bg-orange-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105' 
+                      : 'bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105'
+                  }`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Click to Join
+                  <ExternalLink size={16} />
+                </a>
+              )}
             </div>
           </div>
           <div className="md:w-1/3 p-6 md:p-8 border-t md:border-t-0 md:border-l border-border">
@@ -414,7 +421,14 @@ const ServerCard = ({ server, onClick }) => (
           </div>
         </div>
       )}
-      <div className="absolute top-3 right-3">
+      {server.isFormer && (
+        <div className="absolute top-3 right-3 z-10">
+          <div className="flex items-center gap-1 bg-gradient-to-r from-red-500/20 to-red-600/25 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-lg border border-red-400/30">
+            <span className="text-xs font-semibold text-white">Former</span>
+          </div>
+        </div>
+      )}
+      <div className={`absolute top-3 ${server.isFormer ? 'right-12' : 'right-3'}`}>
         {server.role === "Owner" && <Crown className="h-5 w-5 text-red-500" />}
         {server.role === "Co-Owner" && <Crown className="h-5 w-5 text-purple-500" />}
         {server.role === "Community Manager" && <Crown className="h-5 w-5 text-yellow-400" />}
@@ -422,6 +436,7 @@ const ServerCard = ({ server, onClick }) => (
         {server.role === "Senior Moderator" && <Shield className="h-5 w-5 text-blue-400" />}
         {server.role === "Chat Moderator" && <Shield className="h-5 w-5 text-green-400" />}
         {server.role === "Moderator" && <Shield className="h-5 w-5 text-green-400" />}
+        {server.role === "Junior Moderator" && <Shield className="h-5 w-5 text-green-400" />}
       </div>
     </div>    
     <div className="p-6">
@@ -450,19 +465,21 @@ const ServerCard = ({ server, onClick }) => (
       </div>
       <div className="flex items-center justify-between">
         <span className="text-xs text-muted-foreground font-medium">{server.role}</span>
-        <a 
-          href={server.inviteUrl} 
-          className={`flex items-center gap-2 text-sm px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-            server.name.startsWith('r/') 
-              ? 'bg-orange-500 hover:bg-orange-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105' 
-              : 'bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105'
-          }`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Click to Join
-          <ExternalLink size={14} />
-        </a>
+        {!server.isFormer && (
+          <a 
+            href={server.inviteUrl} 
+            className={`flex items-center gap-2 text-sm px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+              server.name.startsWith('r/') 
+                ? 'bg-orange-500 hover:bg-orange-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105' 
+                : 'bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105'
+            }`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Click to Join
+            <ExternalLink size={14} />
+          </a>
+        )}
       </div>
     </div>  
   </div>

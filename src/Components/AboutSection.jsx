@@ -25,7 +25,7 @@ const DivisionCard = ({ icon: Icon, title, description, index }) => (
 const BusinessCard = ({ index }) => {
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = '/projects/MooCalf Business Card.png';
+    link.href = '/projects/Logo Images/MooCalf Business Card.png';
     link.download = 'MooCalf Business Card.png';
     document.body.appendChild(link);
     link.click();
@@ -42,7 +42,7 @@ const BusinessCard = ({ index }) => {
     >
       <div className="relative">
         <img 
-          src="/projects/MooCalf Business Card.png" 
+          src="/projects/Logo Images/MooCalf Business Card.png" 
           alt="MooCalf Business Card" 
           className="w-full h-auto object-contain rounded-lg"
         />

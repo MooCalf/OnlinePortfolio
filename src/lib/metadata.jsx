@@ -7,7 +7,7 @@ export const siteMetadata = {
   siteName: "MooCalf Portfolio",
   url: "https://moocalf.com",
   siteUrl: "https://moocalf.com",
-  image: "/projects/MooCalf_Main Logo.png",
+  image: "/projects/Logo Images/MooCalf Logo - Full Color.png",
   imageWidth: 512,
   imageHeight: 512,
   imageAlt: "MooCalf Logo ",
@@ -138,7 +138,7 @@ export const siteMetadata = {
     determiner: "the",
     images: [
       {
-        url: "https://moocalf.com/projects/MooCalf_Main%20Logo.png",
+        url: "https://moocalf.com/projects/Logo%20Images/MooCalf%20Logo%20-%20Full%20Color.png",
         width: 1200,
         height: 630,
         alt: "MooCalf Logo - Creative Portfolio showcasing 3D modeling and community management",
@@ -184,7 +184,7 @@ export const siteMetadata = {
     description: "Creative individual specializing in 3D modeling, graphic design, and community management. Passionate about astronomy, art, and building engaging online communities.",
     images: [
       {
-        url: "https://moocalf.com/projects/MooCalf_Main%20Logo.png",
+        url: "https://moocalf.com/projects/Logo%20Images/MooCalf%20Logo%20-%20Full%20Color.png",
         alt: "MooCalf Logo - Creative Portfolio"
       },
       {
@@ -363,28 +363,28 @@ export const siteMetadata = {
   additionalLinkTags: [
     {
       rel: "icon",
-      href: "/projects/MooCalf_Main Logo.png",
+      href: "/projects/Logo Images/MooCalf Logo - Full Color.png",
     },
     {
       rel: "apple-touch-icon",
-      href: "/projects/MooCalf_Main Logo.png",
+      href: "/projects/Logo Images/MooCalf Logo - Full Color.png",
     },
     {
       rel: "apple-touch-icon",
       sizes: "180x180",
-      href: "/projects/MooCalf_Main Logo.png",
+      href: "/projects/Logo Images/MooCalf Logo - Full Color.png",
     },
     {
       rel: "icon",
       type: "image/png",
       sizes: "32x32",
-      href: "/projects/MooCalf_Main Logo.png",
+      href: "/projects/Logo Images/MooCalf Logo - Full Color.png",
     },
     {
       rel: "icon",
       type: "image/png",
       sizes: "16x16",
-      href: "/projects/MooCalf_Main Logo.png",
+      href: "/projects/Logo Images/MooCalf Logo - Full Color.png",
     },
     {
       rel: "manifest",

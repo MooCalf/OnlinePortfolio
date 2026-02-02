@@ -4,7 +4,7 @@ export const LazyImage = ({
   src, 
   alt, 
   className = '', 
-  placeholder = '/projects/MooCalf_Main Logo.png',
+  placeholder = '/projects/Logo Images/MooCalf Logo - Full Color.png',
   loading = 'lazy',
   ...props 
 }) => {
@@ -87,7 +87,7 @@ export const OptimizedImage = ({
   return (
     <div className={`relative overflow-hidden ${className}`}>
       <img
-        src={hasError ? '/projects/MooCalf_Main Logo.png' : src}
+        src={hasError ? '/projects/Logo Images/MooCalf Logo - Full Color.png' : src}
         alt={alt}
         width={width}
         height={height}

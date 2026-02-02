@@ -85,7 +85,7 @@ export const Navbar = () => {
                     >
                         <span className="relative z-10 flex items-center gap-3">
                             <img 
-                                src="/projects/MooCalf_Main Logo.png" 
+                                src="/projects/Logo Images/MooCalf Logo - Full Color.png" 
                                 alt="MooCalf Logo" 
                                 className="h-8 w-8 rounded-full"
                                 loading="lazy"

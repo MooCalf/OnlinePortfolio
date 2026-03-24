@@ -214,6 +214,40 @@ const projects = [
     hasMultipleImages: true
   },
   {
+    id: 19,
+    title: "Lunar Giant Orbit",
+    description: "A Unreal Engine space scene study showcasing three compositions of a moon and gas giant system. This scene focuses on scale, atmosphere, and orbital framing to create a realistic deep space visual.",
+    image: "/projects/Project_IMGs/Moon1.png",
+    images: [
+      "/projects/Project_IMGs/Moon1.png",
+      "/projects/Project_IMGs/Moon-GasGiant.png",
+      "/projects/Project_IMGs/GasGiant-Moon.png"
+    ],
+    tags: ["Unreal Engine", "UE5", "Cinematic", "Space"],
+    demoUrl: "#",
+    artstationUrl: "https://www.artstation.com/dencypher",
+    height: "h-72",
+    category: "UE5",
+    hasMultipleImages: true
+  },
+  {
+    id: 22,
+    title: "Spinel Scene Study",
+    description: "Made in Unreal Engine 5, this imagery was me experimenting in the engine with cel shading, asset and scene creation, and character design. This project was inspired by Steven Universe Spinel.",
+    image: "/projects/Project_IMGs/spinel (1).png",
+    images: [
+      "/projects/Project_IMGs/spinel (1).png",
+      "/projects/Project_IMGs/spinel (2).png",
+      "/projects/Project_IMGs/spinel (3).png"
+    ],
+    tags: ["Unreal Engine 5", "UE5", "Cel Shading", "Character Design"],
+    demoUrl: "#",
+    artstationUrl: "https://www.artstation.com/dencypher",
+    height: "h-72",
+    category: "UE5",
+    hasMultipleImages: true
+  },
+  {
     id: 20,
     title: "ARNOO Shift 0.1.0",
     description: "Experience the perfect fusion of traditional craftsmanship and modern technology with the ARNOO Shift 0.1.0. This innovative clock combines analog elegance with digital convenience, featuring Bluetooth connectivity, smart time calibration, and voice assistance capabilities. Whether you prefer the rhythmic sounds of traditional clockwork or the silence of digital precision, the Shift 0.1.0 adapts to your lifestyle. Created using Blender for 3D modeling and rendered with advanced materials, then enhanced with Photoshop for final photo editing and post-processing effects.",
@@ -537,7 +571,7 @@ const ProjectCard = ({ project, index, onOpenModal }) => (
   </motion.div>
 );
 
-const ProjectModal = ({ project, isOpen, onClose, allProjects = [] }) => {
+const ProjectModal = ({ project, isOpen, onClose, onSelectProject, allProjects = [] }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   // Add null check for project
@@ -580,7 +614,7 @@ const ProjectModal = ({ project, isOpen, onClose, allProjects = [] }) => {
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          className="relative bg-card rounded-2xl max-w-7xl w-full max-h-[95vh] overflow-y-auto custom-scrollbar"
+          className="relative bg-card text-foreground rounded-2xl max-w-7xl w-full max-h-[95vh] overflow-y-auto custom-scrollbar"
           onClick={(e) => e.stopPropagation()}
         >
           <button
@@ -704,11 +738,7 @@ const ProjectModal = ({ project, isOpen, onClose, allProjects = [] }) => {
                       transition={{ delay: index * 0.1 }}
                       className="group cursor-pointer"
                       onClick={() => {
-                        onClose();
-                        setTimeout(() => {
-                          setSelectedProject(relatedProject);
-                          setIsModalOpen(true);
-                        }, 300);
+                        onSelectProject?.(relatedProject);
                       }}
                     >
                       <div className="relative overflow-hidden rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 shadow-lg hover:shadow-2xl transition-all duration-500">
@@ -949,6 +979,7 @@ export const MyProjects = () => {
         project={selectedProject}
         isOpen={isModalOpen}
         onClose={closeModal}
+        onSelectProject={setSelectedProject}
         allProjects={projects}
       />
     </>

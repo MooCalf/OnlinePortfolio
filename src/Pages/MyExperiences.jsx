@@ -14,7 +14,7 @@ const discordServers = [
     id: 1,
     name: "InZOI",
     description: "Welcome to the official inZOI Discord Server! We invite inZOI and life sim fans to chat, share and find the latest news",
-    memberCount: "150,000+",
+    memberCount: "170,000+",
     image: "/projects/Experience_IMGs/inzoi_banner_Experience_IMG.png",
     logo: "/projects/Experience_IMGs/inzoi_logo_Experience_IMG.png",
     inviteUrl: "https://discord.gg/inzoi",
@@ -27,7 +27,7 @@ const discordServers = [
     id: 2,
     name: "Blender Community",
     description: "Blender 3D, CG, and VFX community for artists, designers, and game developers to chat, create, and collaborate together.",
-    memberCount: "160,000+",
+    memberCount: "200,000+",
     image: "/projects/Experience_IMGs/blender_banner_Experience_IMG.png",
     logo: "/projects/Experience_IMGs/blender_logo_Experience_IMG.png",
     inviteUrl: "https://discord.gg/yfj6jbd2",
@@ -37,10 +37,23 @@ const discordServers = [
     boostLevel: 3
   },
   {
+    id: 9,
+    name: "Wonderfolk",
+    description: "A gathering for those who wish to brandis Wonder as an instrument, vibrant, embellished by its whilom hero, Harbouring stories mine to yours!",
+    memberCount: "13,000+",
+    image: "/projects/Experience_IMGs/yaelokre_banner_Experience_IMG.png",
+    logo: "/projects/Experience_IMGs/yaelokre_logo_Experience.png",
+    inviteUrl: "https://discord.gg/wonderfolk",
+    role: "Community Moderator",
+    features: ["Creative Discussion", "Events", "Community Storytelling"],
+    onlineCount: "420",
+    boostLevel: 0
+  },
+  {
     id: 3,
     name: "r/inZOI",
     description: "Welcome to the Official fan-made Reddit page! We invite inZOI and life simulation fans to chat, share and find the latest news.",
-    memberCount: "71,000+",
+    memberCount: "80,000+",
     image: "/projects/Experience_IMGs/rinzoi_banner_Experience_IMG.png",
     logo: "/projects/Experience_IMGs/rinzoi_logo_Experience_IMG.png",
     inviteUrl: "https://www.reddit.com/r/inZOI/",
@@ -53,7 +66,7 @@ const discordServers = [
     id: 4,
     name: "r/inZOIMods",
     description: "A subreddit for the discussion and use of mods for the game, inZOI, a life simulation game where players become gods within the game, allowing them to change everything as they wish and experience endless new stories in various forms of life.",
-    memberCount: "2,000+",
+    memberCount: "3,000+",
     image: "/projects/Experience_IMGs/rinzoimods_banner_Experience_IMG.png",
     logo: "/projects/Experience_IMGs/rinzoimods_logo_Experience_IMG.png",
     inviteUrl: "https://www.reddit.com/r/inZOIMods/",
@@ -97,16 +110,17 @@ const discordServers = [
     image: "/projects/Experience_IMGs/nuvguard_banner_experience.png",
     logo: "/projects/Experience_IMGs/nuvguard_logo_experience.webp",
     inviteUrl: "https://discord.gg/c38jwYuGmA",
-    role: "Moderator",
+    role: "Ex Staff",
     features: ["Minecraft Server", "Community Events", "Player Support", "Game Updates"],
     onlineCount: "180",
-    boostLevel: 0
+    boostLevel: 0,
+    isFormer: true
   },
   {
     id: 8,
     name: "Pineapple's Heaven",
     description: "A Minecraft Discord community centralizing P1nero's modding community from curseforge.",
-    memberCount: "3,600+",
+    memberCount: "13,000+",
     image: "/projects/Experience_IMGs/pineapplesheaven_banner_experience.png",
     logo: "/projects/Experience_IMGs/pineapplesheaven_banner_experience.png",
     inviteUrl: "https://discord.gg/7nmc8hqSYg",
@@ -128,6 +142,7 @@ const experienceLogos = [
   "/projects/Experience_IMGs/krafton_logo_Experience.jpg",
   "/projects/Experience_IMGs/genr8_logo_Experience.png",
   "/projects/Experience_IMGs/Levellr_logo_Experience.webp",
+  "/projects/Experience_IMGs/yaelokre_logo_Experience.png",
 ];
 
 const otherExperiences = [
@@ -341,7 +356,7 @@ const ServerModal = ({ server, isOpen, onClose, allServers, onServerChange }) =>
                 {server.role === "Junior Moderator" && <Shield className="h-5 w-5 text-green-400" />}
                 <span className="text-xs text-muted-foreground font-medium">{server.role}</span>
                 {server.isFormer && (
-                  <span className="ml-2 px-2 py-1 rounded-full bg-gradient-to-r from-red-500/20 to-red-600/25 text-xs text-white font-semibold border border-red-400/30">Former</span>
+                  <span className="ml-2 px-2 py-1 rounded-full bg-gradient-to-r from-red-500/20 to-red-600/25 text-xs text-white font-semibold border border-red-400/30">Ex Staff</span>
                 )}
                 {server.boostLevel > 0 && !server.isFormer && (
                   <span className="ml-2 px-2 py-1 rounded-full bg-purple-500/80 text-xs text-white">Level {server.boostLevel} Boost</span>
@@ -424,7 +439,7 @@ const ServerCard = ({ server, onClick }) => (
       {server.isFormer && (
         <div className="absolute top-3 right-3 z-10">
           <div className="flex items-center gap-1 bg-gradient-to-r from-red-500/20 to-red-600/25 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-lg border border-red-400/30">
-            <span className="text-xs font-semibold text-white">Former</span>
+            <span className="text-xs font-semibold text-white">Ex Staff</span>
           </div>
         </div>
       )}
@@ -529,6 +544,7 @@ const ExperienceCard = ({ experience }) => {
 export const MyExperiences = () => {
   const [selectedServer, setSelectedServer] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleServerClick = (server) => {
     setSelectedServer(server);
     setIsModalOpen(true);

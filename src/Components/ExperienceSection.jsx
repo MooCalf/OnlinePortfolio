@@ -8,10 +8,8 @@ const experienceLogos = [
   "/projects/Experience_IMGs/rinzoi_logo_Experience_IMG.png",
   "/projects/Experience_IMGs/rinzoimods_logo_Experience_IMG.png",
   "/projects/Experience_IMGs/rlifesimulators_logo_Experience_IMG.png",
-  "/projects/Experience_IMGs/invitetracker_logo_Experience.png",
   "/projects/Experience_IMGs/krafton_logo_Experience.jpg",
   "/projects/Experience_IMGs/genr8_logo_Experience.png",
-  "/projects/Experience_IMGs/Levellr_logo_Experience.webp",
 ];
 
 const ExperienceCard = ({ icon: Icon, title, description, index }) => (

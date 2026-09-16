@@ -40,13 +40,26 @@ const discordServers = [
     id: 9,
     name: "Wonderfolk",
     description: "A gathering for those who wish to brandis Wonder as an instrument, vibrant, embellished by its whilom hero, Harbouring stories mine to yours!",
-    memberCount: "13,000+",
+    memberCount: "18,000+",
     image: "/projects/Experience_IMGs/yaelokre_banner_Experience_IMG.png",
     logo: "/projects/Experience_IMGs/yaelokre_logo_Experience.png",
     inviteUrl: "https://discord.gg/wonderfolk",
     role: "Community Moderator",
     features: ["Creative Discussion", "Events", "Community Storytelling"],
     onlineCount: "420",
+    boostLevel: 0
+  },
+  {
+    id: 10,
+    name: "Google for Creators",
+    description: "Google for Creators is a community hub bringing creators together to collaborate, share resources, and leverage the latest insights to level up their online presence.",
+    memberCount: "1,300+",
+    image: "/projects/Experience_IMGs/googlecreators_banner_Experience.png",
+    logo: "/projects/Experience_IMGs/googlecreators_logo_Experience.png",
+    inviteUrl: "https://discord.gg/vpjY9d95wv",
+    role: "Moderator",
+    features: ["Creator Resources", "Community Events", "Networking"],
+    onlineCount: "150",
     boostLevel: 0
   },
   {
@@ -89,38 +102,10 @@ const discordServers = [
     boostLevel: 0
   },
   {
-    id: 6,
-    name: "Invite Tracker Support",
-    description: "Invite Tracker is a powerful Discord bot which offers many features such as invite tracking, giveaways, messages tracking and much more.",
-    memberCount: "47,000+",
-    image: "/projects/Experience_IMGs/invitetracker_banner_Experience.png",
-    logo: "/projects/Experience_IMGs/invitetracker_logo_Experience.png",
-    inviteUrl: "https://discord.gg/2DyfDXR92G",
-    role: "Junior Moderator",
-    features: ["User Support", "Bot Support", "Bot Updates"],
-    onlineCount: "3,200",
-    boostLevel: 3,
-    isFormer: true
-  },
-  {
-    id: 7,
-    name: "NuvGuard",
-    description: "A Minecraft Discord community based on the 'Nuvguard' server.",
-    memberCount: "2,600+",
-    image: "/projects/Experience_IMGs/nuvguard_banner_experience.png",
-    logo: "/projects/Experience_IMGs/nuvguard_logo_experience.webp",
-    inviteUrl: "https://discord.gg/c38jwYuGmA",
-    role: "Ex Staff",
-    features: ["Minecraft Server", "Community Events", "Player Support", "Game Updates"],
-    onlineCount: "180",
-    boostLevel: 0,
-    isFormer: true
-  },
-  {
     id: 8,
     name: "Pineapple's Heaven",
     description: "A Minecraft Discord community centralizing P1nero's modding community from curseforge.",
-    memberCount: "13,000+",
+    memberCount: "19,000+",
     image: "/projects/Experience_IMGs/pineapplesheaven_banner_experience.png",
     logo: "/projects/Experience_IMGs/pineapplesheaven_banner_experience.png",
     inviteUrl: "https://discord.gg/7nmc8hqSYg",
@@ -138,11 +123,10 @@ const experienceLogos = [
   "/projects/Experience_IMGs/rinzoi_logo_Experience_IMG.png",
   "/projects/Experience_IMGs/rinzoimods_logo_Experience_IMG.png",
   "/projects/Experience_IMGs/rlifesimulators_logo_Experience_IMG.png",
-  "/projects/Experience_IMGs/invitetracker_logo_Experience.png",
   "/projects/Experience_IMGs/krafton_logo_Experience.jpg",
   "/projects/Experience_IMGs/genr8_logo_Experience.png",
-  "/projects/Experience_IMGs/Levellr_logo_Experience.webp",
   "/projects/Experience_IMGs/yaelokre_logo_Experience.png",
+  "/projects/Experience_IMGs/googlecreators_logo_Experience.png",
 ];
 
 const otherExperiences = [
@@ -166,11 +150,10 @@ const otherExperiences = [
   },
   {
     id: 3,
-    name: "Levellr",
+    name: "Independent Artist Communities",
     title: "Volunteer Moderator",
-    description: "I volunteer my services as a moderator and community manager for many6 communities that need assistance. Through Levellr, I gain the ability to help set up communities, provide support for them and even the artists and owners behind these communities",
-    logo: "/projects/Experience_IMGs/Levellr_logo_Experience.webp",
-    banner: "/projects/Experience_IMGs/Levellr_banner_Experience.png",
+    description: "I volunteer my services as a moderator and community manager for a number of artist-run communities that need assistance. In this capacity, I help set up communities, provide ongoing support, and work directly with the artists behind them.",
+    icon: Users,
     type: "volunteer"
   },
   {
